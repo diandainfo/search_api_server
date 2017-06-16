@@ -29,7 +29,7 @@ const mapping = {
                 type: "text"
             }
 
-            // ----- 销售条件
+            // ----- 销售筛选条件
             , city_id: {type: "integer"}                    // 城市编号
             , area_id: {type: "integer"}                    // 销售区域编号
             , warehouse: {type: "integer"}                  // 仓库编号

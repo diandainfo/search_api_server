@@ -31,9 +31,12 @@ const mapping = {
 
             // ----- 销售条件
             , city_id: {type: "integer"}                    // 城市编号
-            // 区域编号
-            // 仓库编号
+            , area_id: {type: "integer"}                    // 销售区域编号
+            , warehouse: {type: "integer"}                  // 仓库编号
             , state: {type: "integer"}                      // 销售状态
+
+            // ----- 实时数据
+            , stock: {type: "integer"}                      // 库存数量
 
             // ----- 标签过滤
             , first_catalog_id: {type: "integer"}

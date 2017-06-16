@@ -1,0 +1,22 @@
+{
+  "name": "search_api_server",
+  "version": "0.0.1",
+  "description": "搜索API",
+  "private": true,
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "script": "app.js",
+  "error_file": "/home/logs/search_api_server.log",
+  "out_flie": "/home/logs/search_api_server.log",
+  "merg_logs": true,
+  "log_data_format": "YYYY-MM-DD HH:mm z",
+  "author": "上海店达信息技术有限公司",
+  "license": "private",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "errorhandler": "^1.5.0",
+    "express": "^4.15.3",
+    "log4js": "^1.1.1"
+  }
+}

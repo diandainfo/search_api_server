@@ -14,16 +14,14 @@ module.exports = {
         shards: 1
         , replicas: 0
         , log: 'trace'
-        , d: {              // data-node
+        , check: false          // 是否进行索引检查
+        , check_ip: ""          // 索引检查的ip
+        , data_node: {                  // data-node
             url: "192.168.1.101"
             , port: 9210
-            , check: ""
-        }, c: {             // client-node
+        }, master_node: {                 // master-node
             url: "192.168.1.101"
             , port: 9210
-        }, m: {             // master-node
-            url: "192.168.1.101"
-            , port: 9210
-        }, check: ""
+        }
     }, mysql: {}, redis: {}
 };

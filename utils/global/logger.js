@@ -35,7 +35,7 @@ module.exports = {
      * @returns {string}
      */
     , access: req=> {
-        const ip = require('./method').ip(req)
+        const ip = require('../method').ip(req)
             , _ = ip
                 + '  ' + req.originalUrl
                 + '  ' + req.method

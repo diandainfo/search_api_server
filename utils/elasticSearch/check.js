@@ -7,6 +7,8 @@
 "use strict";
 
 const client = require('./client').dn
+    , config = require('../../config')
+    , mathUtils = require('../method')
     , cLog = GLO.logger('es-check');
 
 const _ = {
@@ -17,14 +19,27 @@ const _ = {
                 .ping({
                     requestTimeout: 10000 // 延迟相应时间为10s
                 })
-                .then(()=>resolve(true))
+                .then(()=>resolve())
                 .catch((error)=> {
-                    reject(GLO.error(error, -11, '连接ES节点失败').message)
+                    cLog.error(error);
+                    reject('连接ES节点失败');
                 })
         )
-    // TODO 获取本机IP，缺失是否需要检查节点
+    
+    // 获取本机IP，确认是否需要检查节点
+    , checkIp: ()=> config.es.check && config.es.check_ip === mathUtils.getLocalIp()
+    
+    // TODO 检查别名是否存在
     // TODO 检查索引是否存在
-    // TODO 创建索引
+    // TODO 创建别名、索引
 };
 
-module.exports = _;
+module.exports = ()=>
+
+    _
+        .ping()
+        .then(()=> {
+            GLO.log('启动检查 - ElasticSearch 节点连接成功', 'start');
+            // console.info(_.checkIp());
+        })
+        .catch((error)=>GLO.error(error));

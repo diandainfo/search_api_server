@@ -9,6 +9,9 @@
 const _ = {
     // 索引检查
     check: require('./check')
+
+    // 连接
+    , client: require('./client')
 };
 
 module.exports = _;

@@ -14,7 +14,7 @@ module.exports = {
         shards: 1
         , replicas: 0
         , log: 'trace'
-        , check: false          // 是否进行索引检查
+        , check: true          // 是否进行索引检查
         , check_ip: ""          // 索引检查的ip
         , data_node: {                  // data-node
             host: "192.168.1.101"

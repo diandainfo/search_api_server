@@ -5,3 +5,8 @@
  */
 
 "use strict";
+
+module.exports = {
+    // 货架商品
+    shelf_goods: require('./shelf_goods')
+};

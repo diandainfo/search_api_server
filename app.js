@@ -28,7 +28,8 @@ app.use("/", require("./routes"));
 app.listen(config.sys.port, ()=> {
     GLO.log("GLO - Search_api_server 服务监听启动 ," +
         "  当前环境:" + GLO.ENV + "  ," +
-        "  监听端口:" + config.sys.port);
+        "  监听端口:" + config.sys.port
+        , 'start');
     require('./service').elasticSearch.run();
 });
 

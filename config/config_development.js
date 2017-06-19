@@ -17,10 +17,12 @@ module.exports = {
         , check: false          // 是否进行索引检查
         , check_ip: ""          // 索引检查的ip
         , data_node: {                  // data-node
-            url: "192.168.1.101"
+            host: "192.168.1.101"
+            , auth: "elastic:changeme"
             , port: 9210
         }, master_node: {                 // master-node
-            url: "192.168.1.101"
+            host: "192.168.1.101"
+            , auth: "elastic:changeme"
             , port: 9210
         }
     }, mysql: {}, redis: {}

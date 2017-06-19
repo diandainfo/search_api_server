@@ -12,7 +12,7 @@ const config = require('../../config')
 const _ = {
     // 数据节点
     dn: new elasticSearch.Client({
-        hosts: [config.es.data_node.url + ":" + config.es.data_node.port]
+        host: [config.es.data_node]
         , apiVersion: "5.4"
     })
 };

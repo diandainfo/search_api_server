@@ -46,9 +46,9 @@ const mapping = {
             , activity_tags: {type: "keyword"}              // 活动标签
 
             // ----- 时间字段
-            , update_at: {type: "date"}
-            , update_timestamp: {type: "long"}
-            , create_timestamp: {type: "long"}
+            , update_at: {type: "date"}                     // 更新时间,用于kibana时间过滤
+            , update_timestamp: {type: "long"}              // 更新时间戳
+            , create_timestamp: {type: "long"}              // 创建时间戳
         }
     }
 };

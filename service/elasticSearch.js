@@ -6,6 +6,8 @@
 
 "use strict";
 
+const esUtils=require('../utils/elasticSearch');
+
 const _ = {
     // 检查节点
     check: ()=> {
@@ -16,6 +18,10 @@ const _ = {
 
     // TODO 启动任务
     , run: ()=> {
+        esUtils.check.ping()
+            .then((boo)=>console.info(boo))
+            .catch((error)=>console.error(error));
+
     }
 };
 

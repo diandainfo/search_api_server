@@ -30,7 +30,7 @@ app.listen(config.sys.port, ()=> {
         "  当前环境:" + GLO.ENV + "  ," +
         "  监听端口:" + config.sys.port
         , 'start');
-    require('./service').elasticSearch.run();
+    require('./service').elasticsearch.run();
 });
 
 module.exports = app;

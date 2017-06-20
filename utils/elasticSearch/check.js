@@ -25,21 +25,22 @@ const _ = {
                     reject('连接ES节点失败');
                 })
         )
-    
+
     // 获取本机IP，确认是否需要检查节点
     , checkIp: ()=> config.es.check && config.es.check_ip === mathUtils.getLocalIp()
-    
+
     // TODO 检查别名是否存在
     // TODO 检查索引是否存在
     // TODO 创建别名、索引
 };
 
 module.exports = ()=>
-
-    _
-        .ping()
-        .then(()=> {
-            GLO.log('启动检查 - ElasticSearch 节点连接成功', 'start');
-            // console.info(_.checkIp());
-        })
-        .catch((error)=>GLO.error(error));
+    new Promise((resolve, reject)=> {
+        _.ping()                                        // 连接es节点
+            .then(()=> {
+                GLO.log('启动检查 - ElasticSearch 节点连接成功', 'start');
+                // console.info(_.checkIp());
+                resolve();
+            })
+            .catch(reject);
+    });

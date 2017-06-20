@@ -6,18 +6,21 @@
 
 "use strict";
 
-const esUtils = require('../utils/elasticSearch');
+const esUtils = require('../../utils/elasticsearch');
 
 const _ = {
     // 检查节点
-    check: ()=> esUtils.check()
+    check: esUtils.check
 
     // TODO 定时任务
+    , schedule: require('./schedule')
+
 
     // 启动任务
-    , run: ()=> {
-        _.check();
-    }
+    , run: ()=>
+        _.check()
+            .then()
+            .catch((error)=>GLO.error(error))
 };
 
 module.exports = _;

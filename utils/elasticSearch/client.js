@@ -7,11 +7,11 @@
 "use strict";
 
 const config = require('../../config')
-    , elasticSearch = require('elasticsearch');
+    , elasticsearch = require('elasticsearch');
 
 const _ = {
     // 数据节点
-    dn: new elasticSearch.Client({
+    dn: new elasticsearch.Client({
         host: [config.es.data_node]
         , apiVersion: "5.4"
     })

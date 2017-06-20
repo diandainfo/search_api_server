@@ -24,8 +24,10 @@
   - 执行步骤:
     1. 执行之前检查是否有任务在执行，即判断 `executing_tag` 是否为 `false`，若为 `true`，则放弃，等待下一次执行；否则进行下一步
     2. 开始使用SQL查询 `upgrade_timestamp` 之后的商品数据，同时将 `executing_tag` 标记为 `true`
-    3. 使用 `count` 获取商品数量，若结果集大于 `results_count`，则根据 `count` 进行切分分页，分页请求商品数据；若 `count` 为0，则结束，重置 `executing_tag` 为 `false` ，同时标记本次定时任务开始时的时间戳，更新到 `upgrade_timestamp` 中 
-    4. 使用 `limit` 获取商品分页数据，
+    3. 使用 `count` 获取商品数量，若结果集大于 `results_count`，则根据 `count` 进行切分分页，分页请求商品数据；
+    若 `count` 为0，则结束，重置 `executing_tag` 为 `false` ，同时标记本次定时任务开始时的时间戳，更新到 `upgrade_timestamp` 中
+    4. 使用 `limit` 获取商品分页数据，根据数据的 `createdAt` 是否等于 `updatedAt` 判断是新增还是更新
+    5.
 
 - 搜索建议的 `completion suggester` 实现问题
   - 因`refresh`节点同步问题，未使用suggester实现

@@ -16,6 +16,9 @@
   * 改为通过 `SQL` 获取 `MySQL` 中数据，通过 `Elasticsearch.js` 将数据写入到 `Elasticsearch`
   * 使用NodeJs进行同步逻辑和数据检查
 - 具体实现:
+  - 定时任务
+    * 每日06-24时每间隔 `interval_time` 时间执行一次同步货架商品的定时任务
+    * 每日02时，检查当日增量货架商品数据 
   - 变量声明与存储:
     * `Redis` 内存储一个时间戳标记 `upgrade_timestamp` ，记录最后一次定时任务执行时间戳，默认为0
     * 全局变量存储一个执行标记 `executing_tag` ，记录是否已有定时任务正在执行，默认为 `false`
@@ -27,7 +30,7 @@
     3. 使用 `count` 获取商品数量，若结果集大于 `results_count`，则根据 `count` 进行切分分页，分页请求商品数据；
     若 `count` 为0，则结束，重置 `executing_tag` 为 `false` ，同时标记本次定时任务开始时的时间戳，更新到 `upgrade_timestamp` 中
     4. 使用 `limit` 获取商品分页数据，根据数据的 `createdAt` 是否等于 `updatedAt` 判断是新增还是更新
-    5.
+    5. 使用 `bulk` 同步数据到ES集群，重置 `executing_tag` 为 `false` ，标记本次定时任务开始时间，更新 `upgrade_timestamp`
 
 - 搜索建议的 `completion suggester` 实现问题
   - 因`refresh`节点同步问题，未使用suggester实现

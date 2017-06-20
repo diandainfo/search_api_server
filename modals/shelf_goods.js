@@ -11,6 +11,15 @@ class Shelf_Goods {
         this.good_id = parseInt(good_id);
     }
 
+    // MySQL导入数据到ElasticSearch中
+    db2es(g){
+        this.setTitle(g.title);
+        this.setUpdatedAt();
+        this.setCreateTS(new Date(g.create_at).getTime());
+        this.setUpdateTS(new Date(g.update_at).getTime());
+    }
+
+
     // 写:商品名称
     setTitle(title) {
         this.title = title;

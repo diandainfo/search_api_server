@@ -23,6 +23,9 @@ router.use(GLO.log4js.connectLogger(GLO.log4js.getLogger('access'), {
     , format: ':remote-addr  :method  :url  :status  :response-time' + 'ms'
 }));
 
+// 首页
+router.use('/', require('./home'));
+
 // TODO 内网访问权限
 
 // 搜索建议

@@ -18,12 +18,13 @@ require('events').EventEmitter.defaultMaxListeners = 0;
 let app = express();
 app.use(bodyParser.urlencoded({limit: "5mb", extended: true}));
 app.use(bodyParser.json({limit: "5mb"}));
+app.use(express.static('./public'));
 
 // 设置代理路由的解析
 app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 
 // 路由逻辑
-app.use("/", require("./routes"));
+app.use('/', require("./routes"));
 
 app.listen(config.sys.port, ()=> {
     GLO.log("GLO - Search_api_server 服务监听启动 ," +

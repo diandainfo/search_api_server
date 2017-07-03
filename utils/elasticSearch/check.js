@@ -8,7 +8,7 @@
 
 const client = require('./client').dn
     , config = require('../../config')
-    , mathUtils = require('../method')
+    , methodUtils = require('../method')
     , cLog = GLO.logger('es-check');
 
 const _ = {
@@ -27,7 +27,7 @@ const _ = {
         )
 
     // 获取本机IP，确认是否需要检查节点
-    , checkIp: ()=> config.es.check && config.es.check_ip === mathUtils.getLocalIp()
+    , needCheck: ()=> config.es.check && config.es.check_ip === methodUtils.getLocalIp()
 
     // TODO 检查别名是否存在
     // TODO 检查索引是否存在
@@ -39,7 +39,7 @@ module.exports = ()=>
         _.ping()                                        // 连接es节点
             .then(()=> {
                 GLO.log('启动检查 - ElasticSearch 节点连接成功', 'start');
-                // console.info(_.checkIp());
+                // console.info(_.needCheck());
                 resolve();
             })
             .catch(reject);

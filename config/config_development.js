@@ -15,7 +15,7 @@ module.exports = {
         , replicas: 0
         , log: 'trace'
         , check: true          // 是否进行索引检查
-        , check_ip: ""          // 索引检查的ip
+        , check_ip: "192.168.1.92"          // 索引检查的ip
         , data_node: {                  // data-node
             host: "192.168.1.101"
             , auth: "elastic:changeme"
@@ -25,5 +25,12 @@ module.exports = {
             , auth: "elastic:changeme"
             , port: 9210
         }
-    }, mysql: {}, redis: {}
+    }, mysql: {
+        timezone: "+08:00"
+    }, redis: {
+        host: "192.168.1.101",
+        port: 6379,
+        db: 8,
+        ttl: 86000
+    }
 };

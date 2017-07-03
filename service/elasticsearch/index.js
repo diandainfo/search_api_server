@@ -12,6 +12,7 @@ const client = require('../../utils/elasticSearch').client.dn
     , sLog = GLO.logger('es-start');
 
 const _ = {
+    // 测试连接ES
     ping: ()=>
         new Promise((resolve, reject)=>
             client
@@ -27,6 +28,8 @@ const _ = {
 
     // 获取本机IP，确认是否需要检查节点
     , needCheck: ()=> config.es.check && config.es.check_ip === methodUtils.getLocalIp()
+
+    // 检查ES节点
     , check: ()=>
         new Promise((resolve, reject)=> {
             _.ping()                                        // 连接es节点

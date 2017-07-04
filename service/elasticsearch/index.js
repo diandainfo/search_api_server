@@ -13,44 +13,44 @@ const client = require('../../utils/elasticSearch').client.dn
 
 const _ = {
     // 测试连接ES
-    ping: ()=>
+    ping: () =>
         new Promise((resolve, reject)=>
-            client
-                .ping({
-                    requestTimeout: 10000 // 延迟相应时间为10s
-                })
-                .then(()=>resolve())
-                .catch((error)=> {
-                    sLog.error(error);
-                    reject('连接ES节点失败');
-                })
+            client.ping({
+                requestTimeout: 10000 // 延迟相应时间为10s
+            }).then(()=> {
+                GLO.log('启动检查 - ElasticSearch 节点连接成功', 'start');
+                resolve();
+            }).catch(error=> {
+                sLog.error(error);
+                reject('连接ES节点失败');
+            })
         )
 
     // 获取本机IP，确认是否需要检查节点
-    , needCheck: ()=> config.es.check && config.es.check_ip === methodUtils.getLocalIp()
+    , needCheck: () => {
+        const chk = config.es.check
+            , cip = config.es.check_ip
+            , boo = chk && cip === methodUtils.getLocalIp();
+        GLO.log('本机IP:【' + cip + '】，该环境【' + (chk ? '需要' : '不需要') + '】，确认【' + (boo ? '检查' : '不检查') + '】ES节点', 'start');
+        return boo;
+    }
 
-    // 检查ES节点
-    , check: ()=>
-        new Promise((resolve, reject)=> {
-            _.ping()                                        // 连接es节点
-                .then(()=> {
-                    GLO.log('启动检查 - ElasticSearch 节点连接成功', 'start');
-                    // console.info(_.needCheck());
-                    resolve();
-                })
-                .catch(reject);
-        })
+    // TODO 检查索引
+    , check: require('./check')
 
     // TODO 定时任务
     , schedule: require('./schedule')
 
     // TODO 创建索引
+    , create: require('./create')
 
     // 启动任务
     , run: ()=>
-        _.check()
-            .then()
-            .catch((error)=>GLO.error(error))
+        _.ping()
+            .then(()=> _.needCheck() ? _.check() : false)
+            .then(_.create)
+            .then(_.schedule)
+            .catch(error=>GLO.error(error))
 };
 
 module.exports = _;

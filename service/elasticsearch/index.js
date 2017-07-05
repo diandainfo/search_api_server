@@ -35,14 +35,14 @@ const _ = {
         return boo;
     }
 
-    // TODO 检查索引
+    // 检查别名、索引
     , check: require('./check')
-
-    // TODO 定时任务
-    , schedule: require('./schedule')
 
     // TODO 创建索引
     , create: require('./create')
+
+    // TODO 定时任务
+    , schedule: require('./schedule')
 
     // 启动任务
     , run: ()=>

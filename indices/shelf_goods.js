@@ -6,7 +6,7 @@
 
 "use strict";
 
-const config = require('../config')[GLO.ENV]['es']
+const config = require('../config')['es']
     , indexName = 'shelf_goods';
 
 const mapping = {

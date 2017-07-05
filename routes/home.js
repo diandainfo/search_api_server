@@ -9,6 +9,16 @@
 const router = require('express').Router();
 
 // 首页 显示README.md 内容
-router.get('/', (req, res)=>res.send(require('marked')(require('fs').readFileSync('./README.md', 'utf-8'))));
+router.get('/', (req, res)=>res.send(
+        '<!doctype html>' +
+        '<html lang="zh-CN">' +
+        '<head><link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css"></head>' +
+        '<body>' +
+        '<div class="container">' +
+        require('marked')(require('fs').readFileSync('./README.md', 'utf-8'))
+            .replace('<table>','<table class="table table-bordered table-condensed table-hover table-striped">') +
+        '</div></body></html>'
+    )
+);
 
 module.exports = router;

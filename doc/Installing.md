@@ -1,5 +1,6 @@
 
 # Install - 安装
+安装 `Elastic Stack` 要基于 `ElasticSearch` 的版本进行。插件的版本要与 `ElasticSearch` 的版本保持一致
 
 - ElasticSearch 
   - version : 5.4.1

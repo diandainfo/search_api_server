@@ -5,6 +5,10 @@
   - version : 5.4.1
   - 安装
     - > [Download Elasticsearch][1]
+    ```
+    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.4.1.zip
+    ```
+  - 修改配置
 
 - X-Pack
   - version : 5.4.1

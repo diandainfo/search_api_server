@@ -1,7 +1,7 @@
 
 # 搜索集群
 
-### [集群安装](./Installing.md)
+### [集群安装](./Installation.md)
 
 ### [说明文档](./Instruction.md)
 

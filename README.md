@@ -5,7 +5,7 @@
 
 |级联号|任务|备注|节点|
 |:---|:---|:---|---|
-|0|Elastic Stack安装|见[Installing](./doc/Installing.md)|-|
+|0|Elastic Stack安装|见 [./doc/Installation.md](./doc/Installation.md)|-|
 |1|ES索引数据结构搭建|-|-|
 |1.0|ES连接创建、节点分离||2017年7月4日|
 |1.1|ES节点连接||2017年7月4日|

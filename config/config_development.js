@@ -17,11 +17,11 @@ module.exports = {
         , check: true          // 是否进行索引检查
         , check_ip: "192.168.1.92"          // 索引检查的ip
         , data_node: {                  // data-node
-            host: "192.168.1.101"
+            host: "192.168.1.180"
             , auth: "elastic:changeme"
             , port: 9210
         }, master_node: {                 // master-node
-            host: "192.168.1.101"
+            host: "192.168.1.180"
             , auth: "elastic:changeme"
             , port: 9210
         }

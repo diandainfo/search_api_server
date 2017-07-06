@@ -31,7 +31,7 @@ const _ = {
         const chk = config.es.check
             , cip = config.es.check_ip
             , boo = chk && cip === methodUtils.getLocalIp();
-        GLO.log('本机IP:【' + cip + '】，该环境【' + (chk ? '需要' : '不需要') + '】，确认【' + (boo ? '检查' : '不检查') + '】ES节点', 'start');
+        GLO.log('本机IP:【' + cip + '】，该环境【' + (chk ? '需要' : '不需要') + '】进行节点检查，确认【' + (boo ? '检查' : '不检查') + '】ES节点', 'start');
         return boo;
     }
 

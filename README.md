@@ -8,6 +8,9 @@
 |0|Elastic Stack安装|见 [./doc/Installation.md](./doc/Installation.md)|-|
 |0.1|`system_call_filter`配置|*待刷*||
 |0.2|`Kibana`安装与配置|*待刷*||
+|0.3|`ElasticSearch` 5.4.3版本安装与运行|-|2017年7月6日|
+|0.4|`ElasticSearch-head` 5.x 安装与运行|-|2017年7月6日|
+|0.||||
 |1|ES索引数据结构搭建|-|-|
 |1.0|ES连接创建、节点分离||2017年7月4日|
 |1.1|ES节点连接||2017年7月4日|

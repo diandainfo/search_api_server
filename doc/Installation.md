@@ -43,30 +43,57 @@
       - `HTTP`
         - > [Elasticsearch Reference [5.4] » Modules » HTTP][17]
       - `Transport` 
-        - > [https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-transport.html][18] 
+        - > [Elasticsearch Reference [5.4] » Modules » Transport][18] 
   - 启动
     ```
-    ./bin/elasticsearch &
+    bin/elasticsearch &
     ``` 
+- Kibana
+  - ## *待刷*
+
 
 - X-Pack
   - version : 5.4.3
   - 安装
-    - > [X-Pack for the Elastic Stack [5.4] » Installing X-Pack][20]
+    - > [X-Pack for the Elastic Stack [5.4] » Installing X-Pack][40]
+      ```
+      bin/elasticsearch-plugin install x-pack
+      ```
+  - 配置X-Pack
+    - 简单配置
+      - > [Enabling and Disabling X-Pack Features][420]
+    - 详细配置
+      - > [X-Pack for the Elastic Stack [5.4] » X-Pack Settings][425] 
+    - 配置信息
+      - ## **关闭所有功能，生产由运维决定是否开启功能**
+      - 在 `elasticsearch.yml ` 配置以下内容
+        ```
+        xpack.ml.enabled: false               ## 关闭机器学习功能 
+        xpack.monitoring.enabled: false       ## 关闭监控功能
+        xpack.security.enabled: false         ## 关闭安全功能
+        xpack.watcher.enabled: false          ## 关闭观察者功能
+        ``` 
+      - 在 `kibana.yml` 配置以下内容
+        ```
+        xpack.ml.enabled: false               ## 关闭机器学习功能 
+        xpack.monitoring.enabled: false       ## 关闭监控功能
+        xpack.reporting.enabled: false        ## 关闭报告功能
+        xpack.security.enabled: false         ## 关闭安全功能
+        ```
   - 修改账号密码
-    - > [X-Pack for the Elastic Stack [5.4] » Securing Elasticsearch and Kibana » Getting Started with Security][21]
+    - > [X-Pack for the Elastic Stack [5.4] » Securing Elasticsearch and Kibana » Getting Started with Security][45]
     - > The default password for the `elastic` user is `changeme`.
 
 
 - ElasticSearch-analysis-ik
   - version : 5.4.3
   - 安装
-    - > [GitHub >> elasticsearch-analysis-ik][30]
+    - > [GitHub >> elasticsearch-analysis-ik][60]
   
 - ElasticSearch-analysis-pinyin
   - version : 5.4.3
   - 安装
-    - > [GitHub >> elasticsearch-analysis-pinyin][40]
+    - > [GitHub >> elasticsearch-analysis-pinyin][65]
   
 [1]: https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html
 [10]: https://www.elastic.co/cn/downloads/elasticsearch
@@ -75,7 +102,9 @@
 [16]: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html
 [17]: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html
 [18]: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-transport.html
-[20]: https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html
-[21]: https://www.elastic.co/guide/en/x-pack/current/security-getting-started.html#security-getting-started
-[30]: https://github.com/medcl/elasticsearch-analysis-ik
-[40]: https://github.com/medcl/elasticsearch-analysis-pinyin
+[40]: https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html
+[420]: https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-enabling
+[425]: https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
+[45]: https://www.elastic.co/guide/en/x-pack/current/security-getting-started.html#security-getting-started
+[60]: https://github.com/medcl/elasticsearch-analysis-ik
+[65]: https://github.com/medcl/elasticsearch-analysis-pinyin

@@ -107,7 +107,7 @@ module.exports = {
      */
     , debug: (msg, info = 'INFO:')=> {
         if (!GLO.isPro()) {
-            logger('debug').info(info + ' ' + typeof msg === 'string' ? msg : JSON.stringify(msg));
+            logger('debug').info(info + ' ' + (typeof msg === 'string' ? msg : JSON.stringify(msg)));
         }
     }
 };

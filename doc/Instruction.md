@@ -1,13 +1,31 @@
 
 # Instruction - 说明
 
-## Connection - 连接
+## 1.Connection - 连接
 
 ### NodeJs 使用 Elasticsearch.js 连接 Elasticsearch 集群
 - 需要使用 `user` + `password` 建立连接
   - > [elasticsearch.js » SSL and Authentication » Basic Auth][1]
 
-## 技术升级
+## 3.技术清单
+- Indices 索引相关技术点
+  - `term_vector`
+    - 高亮搜索关键词的位置标记
+    - > The fast vector highlighter requires with_positions_offsets. The term vectors API can retrieve whatever is stored.
+    - > [Elasticsearch Reference [5.4] » Mapping » Mapping parameters » term_vector][311]
+  - `Completion Suggester`
+    - 搜索建议：自动完成功能，用于辅助用户完成搜索前的输入
+    - > The completion suggester provides auto-complete/search-as-you-type functionality. This is a navigational feature to guide users to relevant results as they are typing, improving search precision. It is not meant for spell correction or did-you-mean functionality like the term or phrase suggesters.
+    - > [Elasticsearch Reference [5.4] » Search APIs » Suggesters » Completion Suggester][321]
+  - `Context Suggester`
+  - `Fuzzy Query`
+  - ``
+
+[311]: https://www.elastic.co/guide/en/elasticsearch/reference/5.4/term-vector.html
+[321]: https://www.elastic.co/guide/en/elasticsearch/reference/5.4/search-suggesters-completion.html
+***
+
+## 5.技术升级
 ### DB >> ES 数据同步
 - 已有问题:
   * 使用`Elasticsearch-jdbc`进行增量数据同步
@@ -39,9 +57,6 @@
 - 搜索集群内存
 - 搜索日志
   - 按月份
--
-
-
 
 [1]: https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/auth-reference.html#_basic_auth
 

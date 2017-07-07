@@ -116,12 +116,26 @@
   - version : 5.4.3
   - 安装
     - > [GitHub >> elasticsearch-analysis-ik][60]
+    - 步骤
+      - 下载release对应的zip [medcl/elasticsearch-analysis-ik > releases][601]
+        ```
+        wget https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v5.4.3/elasticsearch-analysis-ik-5.4.3.zip
+        ``` 
+      - 解压缩 
+        ```
+        unzip elasticsearch-analysis-ik-5.4.3.zip
+        ```
+      - 移动目录到 `elasticsearch-5.4.3` 下 `plugins/analysis-ik`
+      - 重启es
   
 - ElasticSearch-analysis-pinyin
   - version : 5.4.3
   - 安装
     - > [GitHub >> elasticsearch-analysis-pinyin][65]
+  - 步骤同ik
   
+***
+
 [000]: http://blog.csdn.net/u012371450/article/details/51776505
 [001]: https://zhuanlan.zhihu.com/p/22241634?refer=dataeye
 [002]: http://blog.sina.com.cn/s/blog_c90ce4e001032f7w.html
@@ -145,4 +159,5 @@
 [501]: https://github.com/mobz/elasticsearch-head
 
 [60]: https://github.com/medcl/elasticsearch-analysis-ik
+[601]: https://github.com/medcl/elasticsearch-analysis-ik/releases
 [65]: https://github.com/medcl/elasticsearch-analysis-pinyin

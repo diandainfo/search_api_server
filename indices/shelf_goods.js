@@ -19,20 +19,39 @@ const mapping = {
                 type: "text"
                 , analyzer: "ik_smart"
                 , search_analyzer: "ik_smart"
+                , term_vector: 'with_positions_offsets'
             }, title_ik_max: {
                 type: "text"
                 , analyzer: "ik_max_word"
                 , search_analyzer: "ik_max_word"
+                , term_vector: 'with_positions_offsets'
             }, title_pinyin_only: {
-                type: "text"
+                type: "completion"
+                , analyzer: "only_pinyin_analyzer"
+                , search_analyzer: 'only_pinyin_analyzer'
+                , preserve_separators: false                // 忽略分隔符
+                , contexts: [{
+                    type: 'category'
+                    , name: 'city_id'
+                    , path: 'city_id'
+                }]
             }, title_pinyin_full: {
-                type: "text"
+                type: "completion"
+                , analyzer: "full_pinyin_analyzer"
+                , search_analyzer: 'full_pinyin_analyzer'
+                , preserve_separators: false
+                , contexts: [{
+                    type: 'category'
+                    , name: 'city_id'
+                    , path: 'city_id'
+                }]
             }
 
             // ----- 销售筛选条件
             , city_id: {type: "integer"}                    // 城市编号
-            , area_id: {type: "integer"}                    // 不可销售区域编号
+            , area_id: {type: "integer"}                    // 可销售区域编号
             , warehouse_id: {type: "integer"}               // 仓库编号
+            , warehouse_boo: {type: "boolean"}              // 是否为前置仓、主仓冲突
             , state: {type: "integer"}                      // 销售状态
 
             // ----- 实时数据

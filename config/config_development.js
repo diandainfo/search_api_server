@@ -8,27 +8,32 @@
 
 module.exports = {
     sys: {
-        host: ""
+        host: ''
         , port: 39210
     }, es: {
         shards: 1
         , replicas: 0
         , log: 'trace'
-        , check: true          // 是否进行索引检查
-        , check_ip: "192.168.1.92"          // 索引检查的ip
-        , data_node: {                  // data-node
-            host: "192.168.1.180"
-            , auth: "elastic:changeme"
+        , check: true                               // 是否进行索引检查
+        , check_ip: '192.168.1.92'                  // 索引检查的ip
+        , data_node: {                              // data-node
+            host: '192.168.1.180'
+            , auth: 'elastic:changeme'
             , port: 9210
-        }, master_node: {                 // master-node
-            host: "192.168.1.180"
-            , auth: "elastic:changeme"
+        }, master_node: {                           // master-node
+            host: '192.168.1.180'
+            , auth: 'elastic:changeme'
             , port: 9210
         }
     }, mysql: {
-        timezone: "+08:00"
+        host: '127.0.0.1'
+        , port: 3306
+        , user: 'root'
+        , password: 'root'
+        , database: 'shelf_goods'
+        , timezone: '+08:00'
     }, redis: {
-        host: "192.168.1.101",
+        host: '192.168.1.101',
         port: 6379,
         db: 8,
         ttl: 86000

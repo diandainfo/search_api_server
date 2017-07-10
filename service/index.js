@@ -12,6 +12,6 @@ module.exports = {
 
     // goods 服务
 
-    // es与db 连接服务
-    , esdbc: require('./esdbc')
+    // 数据同步
+    , sync: require('./sync')
 };

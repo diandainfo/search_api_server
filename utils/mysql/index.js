@@ -18,7 +18,7 @@ module.exports = {
         connection.connect();                       // 建立连接
         connection.query(sql, (error, results)=> {  // 发送请求
             if (error) {
-                reject(error);
+                reject(GLO.eLog(error, 'SQL查询出错'));
             } else {
                 connection.end();                   // 断开连接
                 resolve(results);

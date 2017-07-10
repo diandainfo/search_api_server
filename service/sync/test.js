@@ -16,4 +16,6 @@ _.mysql
     .getGoodsSQL('2017-01-01 00:00:00')
     .then(sql=>_.mysql.getGoodsData(sql))
     .then(results=>_.reset(results))
+    .then(bulk=>_.elasticsearch(bulk))
+    .then(r=>console.info(r))
     .catch(error=>console.error(error));

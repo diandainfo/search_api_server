@@ -45,7 +45,7 @@ module.exports = check=>new Promise((resolve, reject)=> {
                         GLO.debug(result, 'create-mapping-result');
                         printF('-- √ 索引[' + index.index + ']中映射[' + mappingType + ']创建成功 --');
                     })
-                    .catch(error=>reject(error));
+                    .catch(error=>reject(GLO.eLog(error, '创建索引和映射出错')));
             });
             return Promise.all(promises)
                 .then(()=>resolve())

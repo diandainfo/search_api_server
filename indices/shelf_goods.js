@@ -12,7 +12,8 @@ const config = require('../config')['es']
 const mapping = {
     info: {
         properties: {
-            good_id: {type: "integer"}
+            good_id: {type: "integer"}                      // sku商品编号
+            , on_sell_good_id: {type: "integer"}            // 货架商品编号
             // ----- 全文搜索、搜索建议字段
             , title: {type: "keyword"}      // 商品名称
             , title_ik_smart: {

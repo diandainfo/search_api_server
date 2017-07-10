@@ -13,13 +13,13 @@ const Good = require('../../modals').shelf_goods
 module.exports = results=> {
     let bulk = [];
     results.forEach(result=> {
-        const good_id = result.id
-            , good = new Good(good_id);
+        const on_sell_good_id = result.id
+            , good = new Good(on_sell_good_id);
         good.db2es(result); // db数据到es的转换
         // 增量数据的为商品的所有数据，无需判断是新建还是更新，直接抹去已有数据
-        bulk.push({index: {_index: index.alias.name, _type: Object.keys(index.mapping)[0], _id: good_id}});
+        bulk.push({index: {_index: index.alias.name, _type: Object.keys(index.mapping)[0], _id: on_sell_good_id}});
         bulk.push(good);
     });
-    console.info(bulk);
+    GLO.debug(bulk, 'db2es-bulk');
     return bulk;
 };

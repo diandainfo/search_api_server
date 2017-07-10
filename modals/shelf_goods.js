@@ -7,8 +7,8 @@
 "use strict";
 
 class Shelf_Goods {
-    constructor(good_id) {
-        this.good_id = parseInt(good_id);
+    constructor(on_sell_good_id) {
+        this.on_sell_good_id = parseInt(on_sell_good_id);
     }
 
     // MySQL导入数据到ElasticSearch中

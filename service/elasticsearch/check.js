@@ -43,7 +43,7 @@ module.exports = () => new Promise((resolve, reject)=> {
                         }
                         return false;
                     })
-                    .catch(error=>reject(error));
+                    .catch(error=>reject(GLO.eLog(error, '检查别名和索引出错')));
             }
         );
     return Promise.all(promises)

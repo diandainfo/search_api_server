@@ -18,7 +18,7 @@ const _ = {
             , 'utf8'
             , (error, sql)=> {
                 if (error) {
-                    reject(error);
+                    reject(GLO.eLog(error, '获取商品数量出错'));
                 } else {
                     resolve(sql
                         + '\nWHERE '
@@ -35,7 +35,7 @@ const _ = {
             , 'utf8'
             , (error, sql)=> {
                 if (error) {
-                    reject(error);
+                    reject(GLO.eLog(error, '获取商品数据出错'));
                 } else {
                     resolve(sql + '\nWHERE \n  on_sell_goods.updatedAt >= \'' + dateTime + '\'');
                 }

@@ -9,5 +9,17 @@
 const ElasticSearchClient = require('../../utils/elasticSearch').client.dn;
 
 module.exports = bulk=>new Promise((resolve, reject)=>
-    ElasticSearchClient.bulk(bulk)
+    ElasticSearchClient.bulk({
+        body: bulk
+    }, (err, resp)=> {
+        if (err) {
+            reject(GLO.eLog(err, '批量索引商品数据出错'));
+        } else {
+            if (resp.errors) {
+                reject(GLO.eLog(resp, '批量索引商品数据失败'));
+            } else {
+                resolve(true);
+            }
+        }
+    })
 );

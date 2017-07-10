@@ -12,7 +12,7 @@
 node_modules/
 
 # sql
-sql/
+sql/shelf_goods.sql
 
 # logs
 logs/

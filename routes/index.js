@@ -11,6 +11,12 @@ const router = require('express').Router();
 // 心跳监听接口
 router.get('/listener', (req, res)=>res.json(GLO.success(true)));
 
+// 接口文档 - 转发到静态地址
+router.use('/public', (req, res)=>res.redirect(req.url));
+
+// TODO 接口文档 - 实际地址的解析
+
+
 // 请求日志
 router.use((req, res, next)=> {
     GLO.access(req);

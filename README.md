@@ -10,7 +10,7 @@
 
 ## 接口文档
 - 仅限内网访问
-> 见 [public/docs/README.md](./docs/README.md)
+> 见 [public/docs/README.md](./public/docs/README.md)
 
 ## 项目进度
 
@@ -53,3 +53,4 @@
 ||||
 |4|接口文档|-|-||
 |4.1|接口文档结构|-||
+|4.2|接口文档的路由解析|-||

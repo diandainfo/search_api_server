@@ -13,7 +13,7 @@ global.GLO = require('../../utils/global');
 const _ = require('./index');
 
 _.mysql
-    .getGoodsCountSQL()
+    .getGoodsSQL('2017-01-01 00:00:00')
     .then(sql=>_.mysql.getGoodsData(sql))
-    .then(results=>console.info(results))
+    .then(results=>_.reset(results))
     .catch(error=>console.error(error));

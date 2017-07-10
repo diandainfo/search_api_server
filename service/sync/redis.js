@@ -12,13 +12,30 @@ const redis = require('redis')
     , config = require('../../config').redis;
 
 // 同步时间戳
-const KEY='search_api_server_sync_timestamp';
+const KEY = 'search_api_server_sync_timestamp';
 
 const _ = {
     // redis 客户端
     client: ()=>redis.createClient(config)
 
-    //
+    // 写入数据
+    , setDateTime: dateTime=> {
+        const client = _.client();
+        client.set(KEY, new Date(dateTime).getTime());
+        client.quit();
+    }
+
+    // 读取数据
+    , getDateTime: ()=> new Promise((resolve, reject)=> {
+        const client = _.client();
+        client.get(KEY, (err, reply)=> {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(reply);
+            }
+        });
+    })
 };
 
 module.exports = _;

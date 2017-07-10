@@ -7,11 +7,11 @@
 "use strict";
 
 module.exports = {
-    // es 服务
+    // ES相关启动、定时任务服务
     elasticsearch: require('./elasticsearch')
 
-    // goods 服务
+    // goods - 查询相关服务
 
-    // 数据同步
+    // DB2ES数据同步服务
     , sync: require('./sync')
 };

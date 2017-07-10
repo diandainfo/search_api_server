@@ -12,6 +12,17 @@
  */
 
 module.exports = {
-    // DB数据到ES
+    // 查询mysql中数据
     mysql: require('./mysql')
+
+    // 处理数据成es结构
+    , reset: require('./reset')
+
+    // 写入数据到es
+    , elasticsearch: require('./elasticsearch')
+
+    // 定时任务运行
+    , schedule: ()=> {
+
+    }
 };

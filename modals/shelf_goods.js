@@ -13,7 +13,7 @@ class Shelf_Goods {
 
     // MySQL导入数据到ElasticSearch中
     db2es(g) {
-        this.setTitle(g.title);
+        this._title = g.title;      // 写入多个商品名称中
         this.setUpdatedAt();
         this.setCreateTS(new Date(g.create_at).getTime());
         this.setUpdateTS(new Date(g.update_at).getTime());
@@ -28,12 +28,13 @@ class Shelf_Goods {
         this.title_pinyin_full = title;
     }
 
-    set title(title) {
+    // 写:商品名称
+    set _title(title) {
         this.setTitle(title);
     }
 
     // 读:商品名称
-    get title() {
+    get _title() {
         return this.title;
     }
 

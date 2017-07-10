@@ -23,7 +23,7 @@ const _ = {
                     resolve(sql
                         + '\nWHERE '
                         + '\n  on_sell_goods.updatedAt >= \'' + dateTime + '\''
-                        + '\n  LIMIT ' + offset + ',' + limit
+                        + '\nLIMIT ' + offset + ',' + limit
                     );
                 }
             })

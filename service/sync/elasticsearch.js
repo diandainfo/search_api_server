@@ -6,4 +6,8 @@
 
 "use strict";
 
-const es = require('../../utils/elasticSearch');
+const ElasticSearchClient = require('../../utils/elasticSearch').client.dn;
+
+module.exports = bulk=>new Promise((resolve, reject)=>
+    ElasticSearchClient.bulk(bulk)
+);

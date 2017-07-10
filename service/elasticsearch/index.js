@@ -6,7 +6,7 @@
 
 "use strict";
 
-const client = require('../../utils/elasticSearch').client.dn
+const ElasticSearchClient = require('../../utils/elasticSearch').client.dn
     , config = require('../../config')
     , methodUtils = require('../../utils/method')
     , sLog = GLO.logger('es-start');
@@ -15,7 +15,7 @@ const _ = {
     // 测试连接ES
     ping: () =>
         new Promise((resolve, reject)=>
-            client.ping({
+            ElasticSearchClient.ping({
                 requestTimeout: 10000 // 延迟相应时间为10s
             }).then(()=> {
                 GLO.log('启动检查 - ElasticSearch 节点连接成功', 'start');

@@ -58,11 +58,14 @@ const mapping = {
             , stock: {type: "integer"}                      // 库存数量
 
             // ----- 标签过滤
-            , first_catalog_id: {type: "integer"}
-            , second_catalog_id: {type: "integer"}
-            , first_catalog_name: {type: "keyword"}
-            , second_catalog_name: {type: "keyword"}
+            , first_catalog_id: {type: "integer"}           // 一级分类编号
+            , second_catalog_id: {type: "integer"}          // 二级分类编号
+            , first_catalog_name: {type: "keyword"}         // 一级分类名称
+            , second_catalog_name: {type: "keyword"}        // 二级分类名称
             , activity_tags: {type: "keyword"}              // 活动标签
+            //TODO 品牌标签
+            //TODO 小品牌标签
+            //TODO 额外的搜索标签
 
             // ----- 时间字段
             , update_at: {type: "date"}                     // 更新时间,用于kibana时间过滤

@@ -6,9 +6,11 @@
 
 "use strict";
 
+global.GLO = require('../global');
+
 // 测试连接
 const mysql = require('./index');
 
-mysql('select count(*) AS count from test')
+mysql.query('select count(*) AS count from test')
     .then(r=>console.info(r))
     .catch(e=>console.error(e));

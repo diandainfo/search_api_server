@@ -14,6 +14,7 @@ const connection = mysql.createConnection(config);
 module.exports = {
     // 调用查询方法
     query: sql=>new Promise((resolve, reject)=> {
+        GLO.debug(sql, 'SQL:');
         connection.connect();                       // 建立连接
         connection.query(sql, (error, results)=> {  // 发送请求
             if (error) {

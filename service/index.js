@@ -9,6 +9,9 @@
 module.exports = {
     // es 服务
     elasticsearch: require('./elasticsearch')
-    
-    // 
+
+    // goods 服务
+
+    // es与db 连接服务
+    , esdbc: require('./esdbc')
 };

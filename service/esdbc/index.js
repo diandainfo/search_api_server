@@ -13,5 +13,5 @@
 
 module.exports = {
     // DB数据到ES
-    db2es: 1
+    mysql: require('./mysql')
 };

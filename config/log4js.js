@@ -6,6 +6,8 @@
 
 "use strict";
 
+const homePath = require('path').join(__dirname + '/..');
+
 module.exports = {
     general: {
         appenders: [{
@@ -14,30 +16,30 @@ module.exports = {
             type: "clustered"
             , appenders: [{
                 "type": "dateFile",
-                "filename": "./logs/access/access.log",                 // 请求日志
+                "filename": homePath + "/logs/access/access.log",                 // 请求日志
                 "pattern": "-yyyy-MM-dd",
                 "category": "access"
             }, {
                 "type": "dateFile",
-                "filename": "./logs/search/search.log",                 // 搜索日志
+                "filename": homePath + "/logs/search/search.log",                 // 搜索日志
                 "pattern": "-yyyy-MM-dd",
                 "category": "search"
             }, {
                 "type": "dateFile",
-                "filename": "./logs/feedback/feedback.log",             // 反馈日志
+                "filename": homePath + "/logs/feedback/feedback.log",             // 反馈日志
                 "pattern": "-yyyy-MM-dd",
                 "category": "feedback"
             }, {
                 "type": "file",
-                "filename": "./logs/app.log",                           // 运行日志
-                "maxLogSize": 10485760,
-                "numBackups": 3
+                "filename": homePath + "/logs/app.log",                           // 运行日志
+                "maxLogSize": 10 * 1024 * 1024,
+                "backups": 3
             }, {
                 "type": "logLevelFilter",
                 "level": "ERROR",
                 "appender": {
                     "type": "file",
-                    "filename": "./logs/errors.log"                     // 错误日志
+                    "filename": homePath + "/logs/errors.log"                     // 错误日志
                 }
             }]
         }]

@@ -8,10 +8,31 @@
 
 "use strict";
 
+const schedule=require('node-schedule');
+
+const syncService=require('../sync');
+
 const _ = {
-    // 每日6-24点 每10s检查一次同步数据
-    // 每日00:30点 开始检查前一日同步数据
-    // 
+    // 每日6-23点 每10s检查一次同步数据
+    syncEvery:()=>{
+        const job=schedule.scheduleJob('*/30 * 6-23 * * *',()=>{
+
+        });
+    }
+    
+    // 每日00:30:30点 开始检查前一日同步数据
+    ,syncToday:()=>{
+        const job=schedule.scheduleJob('30 30 0 * * *',()=>{
+            
+        });
+    }
+    
+    // 每日6-23点 每30分钟存一次同步时间戳
+    ,saveTimestamp:()=>{
+        const job=schedule.scheduleJob('30 */30 6-23 * * *',()=>{
+
+        });
+    }
 };
 
-module.exports = _;
+module.exports = ()=>{};

@@ -1,7 +1,6 @@
 
 # 搜索服务
 提供基于多维度的搜索服务
-> 感谢 [chjj/marked@GitHub](https://github.com/chjj/marked),文档基于此生成html
 
 ## 启动说明
 
@@ -12,6 +11,8 @@
 ## 接口文档
 - 仅限内网访问
 > 见 [public/docs/README.md](./public/docs/README.md)
+
+> 感谢 [chjj/marked@GitHub](https://github.com/chjj/marked),文档MarkDown基于此生成html
 
 ## 项目进度
 

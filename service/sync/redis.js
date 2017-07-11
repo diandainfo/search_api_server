@@ -19,14 +19,14 @@ const _ = {
     client: ()=>redis.createClient(config)
 
     // 写入数据
-    , setDateTime: dateTime=> {
+    , save: timestamp=> {
         const client = _.client();
-        client.set(KEY, new Date(dateTime).getTime());
+        client.set(KEY, timestamp);
         client.quit();
     }
 
     // 读取数据
-    , getDateTime: ()=> new Promise((resolve, reject)=> {
+    , read: ()=> new Promise((resolve, reject)=> {
         const client = _.client();
         client.get(KEY, (err, reply)=> {
             if (err) {

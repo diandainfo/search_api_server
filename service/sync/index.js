@@ -7,9 +7,10 @@
 "use strict";
 
 /**
- * esdbc - ElasticSearch DataBase Connectivity
- * ElasticSearch 与 DataBase 的连接器
+ * ElasticSearch 与 DataBase 同步任务
  */
+
+const moment = require('moment');
 
 module.exports = {
     // 查询mysql中数据
@@ -21,8 +22,25 @@ module.exports = {
     // 写入数据到es
     , elasticsearch: require('./elasticsearch')
 
-    // 定时任务运行
-    , schedule: ()=> {
+    // redis数据同步
+    , redis: require('./redis')
 
+    // 定时同步任务
+    , syncEvery: function () {
+        const self = this;
+        return new Promise((resolve,reject)=>{
+            if(GLO.sync_boo){ // 已有同步任务在执行
+                
+            }else{
+                
+            }
+            // 标记当前时间
+            GLO.temp_timestamp = new Date();
+            self.mysql.getGoodsSQL(GLO.temp_timestamp)
+        });
     }
+
+    // 初始化
+
+    // 单日同步任务
 };

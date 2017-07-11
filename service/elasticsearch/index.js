@@ -43,7 +43,7 @@ const _ = {
     // 创建索引
     , create: require('./create')
 
-    // TODO 定时任务
+    // 定时任务
     , schedule: require('./schedule')
 
     // 启动任务

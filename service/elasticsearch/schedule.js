@@ -8,31 +8,40 @@
 
 "use strict";
 
-const schedule=require('node-schedule');
+const schedule = require('node-schedule');
 
-const syncService=require('../sync');
+const syncService = require('../sync');
 
 const _ = {
     // 每日6-23点 每10s检查一次同步数据
-    syncEvery:()=>{
-        const job=schedule.scheduleJob('*/30 * 6-23 * * *',()=>{
-
+    syncEvery: ()=> {
+        const job = schedule.scheduleJob('*/30 * 6-23 * * *', ()=> {
+            syncService.syncEvery()
+                .then(result=>GLO.sync(result))
+                .catch(err=> {
+                    GLO.eLog(err);
+                    job.cancel();
+                });
         });
     }
-    
+
     // 每日00:30:30点 开始检查前一日同步数据
-    ,syncToday:()=>{
-        const job=schedule.scheduleJob('30 30 0 * * *',()=>{
-            
-        });
-    }
-    
-    // 每日6-23点 每30分钟存一次同步时间戳
-    ,saveTimestamp:()=>{
-        const job=schedule.scheduleJob('30 */30 6-23 * * *',()=>{
+    , syncToday: ()=> {
+        const job = schedule.scheduleJob('30 30 0 * * *', ()=> {
 
         });
+    }
+
+    // 每日6-23点 每30分钟存一次同步时间戳
+    , saveTimestamp: ()=> {
+        schedule.scheduleJob('30 */30 6-23 * * *', ()=> {
+            syncService.redis.save(GLO.sync_timestamp);
+        });
+        GLO.log(' √ 定时任务:Redis存储时间戳 成功 --', 'start');
     }
 };
 
-module.exports = ()=>{};
+module.exports = ()=> {
+    GLO.log('----- 开始创建定时任务 -----', 'start');
+    _.saveTimestamp();
+};

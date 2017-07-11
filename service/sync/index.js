@@ -10,8 +10,6 @@
  * ElasticSearch 与 DataBase 同步任务
  */
 
-const moment = require('moment');
-
 module.exports = {
     // 查询mysql中数据
     mysql: require('./mysql')
@@ -30,13 +28,12 @@ module.exports = {
         const self = this;
         return new Promise((resolve,reject)=>{
             if(GLO.sync_boo){ // 已有同步任务在执行
-                
+                resolve('已有同步任务在执行');
             }else{
-                
+                // 标记当前时间
+                GLO.temp_timestamp = new Date().getTime();
+                self.mysql.getGoodsSQL(GLO.temp_timestamp);
             }
-            // 标记当前时间
-            GLO.temp_timestamp = new Date();
-            self.mysql.getGoodsSQL(GLO.temp_timestamp)
         });
     }
 

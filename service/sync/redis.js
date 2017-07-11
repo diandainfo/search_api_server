@@ -21,7 +21,13 @@ const _ = {
     // 写入数据
     , save: timestamp=> {
         const client = _.client();
-        client.set(KEY, timestamp);
+        client.set(KEY, timestamp, (err, res)=> {
+            if (err) {
+                GLO.eLog(err, '写入redis数据出错');
+            } else {
+                GLO.sync('同步时间戳写入Redis结果:' + res);
+            }
+        });
         client.quit();
     }
 

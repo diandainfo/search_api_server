@@ -31,6 +31,13 @@ module.exports = {
                 "category": "feedback"
             }, {
                 "type": "file",
+                "filename": homePath + "/logs/sync.log",                          // 同步日志
+                "pattern": "-yyyy-MM-dd",
+                "maxLogSize": 10 * 1024 * 1024,
+                "backups": 2,
+                "category": "sync"
+            }, {
+                "type": "file",
                 "filename": homePath + "/logs/app.log",                           // 运行日志
                 "maxLogSize": 10 * 1024 * 1024,
                 "backups": 3

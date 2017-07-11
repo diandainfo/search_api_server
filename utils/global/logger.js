@@ -47,6 +47,20 @@ module.exports = {
         return _;
     }
 
+    //TODO 搜索结果的正反馈日志
+    // , feedback: ()=> {
+    // }
+
+    //TODO 搜索日志
+    //,search:()=>{
+    //}
+
+    /**
+     * 同步任务日志
+     * @param msg
+     */
+    , sync: msg=>logger('sync').info(msg)
+
     /**
      * 错误信息类
      * @param error         错误对象或信息

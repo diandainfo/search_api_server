@@ -6,19 +6,14 @@
 
 "use strict";
 
-const router = require('express').Router();
+const router = require('express').Router()
+    , html = require('../public/views/html');
 
 // 首页 显示README.md 内容
-router.get('/', (req, res)=>res.send(
-        '<!doctype html>' +
-        '<html lang="zh-CN">' +
-        '<head><link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css"></head>' +
-        '<body>' +
-        '<div class="container">' +
-        require('marked')(require('fs').readFileSync('./README.md', 'utf-8'))
-            .replace('<table>','<table class="table table-bordered table-condensed table-hover table-striped">') +
-        '</div></body></html>'
-    )
+router.get('/', (req, res)=>res.send(html.head
+    + html.body
+    + html.reset(require('marked')(require('fs').readFileSync('./README.md', 'utf-8')))
+    + html.foot)
 );
 
 module.exports = router;

@@ -25,7 +25,7 @@ const _ = {
             if (err) {
                 GLO.eLog(err, '写入redis数据出错');
             } else {
-                GLO.sync('同步时间戳写入Redis结果:' + res);
+                GLO.sync(' √ 同步时间戳写入Redis结果:' + res);
             }
         });
         client.quit();

@@ -43,15 +43,19 @@ const _ = {
     // 创建索引
     , create: require('./create')
 
+    // 项目初始化
+    , init: require('./init')
+
     // 定时任务
     , schedule: require('./schedule')
 
-    // 启动任务
+    // 项目启动 - 执行任务
     , run: ()=>
         _.ping()
-            .then(()=> _.needCheck() ? _.check() : false)
-            .then(_.create)
-            .then(_.schedule)
+            .then(()=> _.needCheck() ? _.check() : false) // ES索引检查
+            .then(_.create) // ES索引创建
+            .then(_.init)   // 项目初始化
+            .then(_.schedule)   // 定时任务
             .catch(error=>GLO.error(error))
 };
 

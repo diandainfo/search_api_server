@@ -44,7 +44,6 @@ const _ = {
 };
 
 module.exports = ()=> {
-    //TODO 项目启动，将redis数据读入到全局变量
     GLO.log('----- 开始创建定时任务 -----', 'start');
     _.syncEveryHeart();
     _.saveTimestamp();

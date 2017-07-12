@@ -9,12 +9,11 @@
 const mysql = require('mysql')
     , config = require('../../config').mysql;
 
-const connection = mysql.createConnection(config);
-
 module.exports = {
     // 调用查询方法
     query: sql=>new Promise((resolve, reject)=> {
-        GLO.debug(sql, 'SQL:');
+        const connection = mysql.createConnection(config);
+        // GLO.debug(sql, 'SQL:');   // 输出调用的SQL
         connection.connect();                       // 建立连接
         connection.query(sql, (error, results)=> {  // 发送请求
             if (error) {

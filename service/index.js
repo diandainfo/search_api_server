@@ -7,8 +7,8 @@
 "use strict";
 
 module.exports = {
-    // ES相关启动、定时任务服务
-    elasticsearch: require('./elasticsearch')
+    // 项目启动、定时任务服务
+    start: require('./start')
 
     // goods - 查询相关服务
 

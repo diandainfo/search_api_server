@@ -26,13 +26,40 @@ module.exports = {
     // 定时同步任务
     , syncEveryHeart: function () {
         const self = this;
-        return new Promise((resolve,reject)=>{
-            if(GLO.sync_boo){ // 已有同步任务在执行
+        return new Promise((resolve, reject)=> {
+            if (GLO.sync_boo) { // 已有同步任务在执行
                 resolve(' × 已有同步任务在执行');
-            }else{
+            } else {
+                GLO.sync('-- 启动商品同步任务');
+                GLO.sync_boo = true;
                 // 标记当前时间
                 GLO.temp_timestamp = new Date().getTime();
-                // self.mysql.getGoodsSQL(GLO.temp_timestamp);
+                self.mysql
+                    .getGoodsSQL(GLO.sync_timestamp)
+                    .then(sql=>self.mysql.getGoodsData(sql))
+                    .then(results=> {
+                        if (results && results instanceof Array && results.length > 0) {
+                            GLO.sync(' √ 本次同步商品数量:' + results.length);
+                            return self.reset(results);
+                        } else {
+                            GLO.sync(' × 无需要增量的商品');
+                            GLO.sync_boo = false;
+                            GLO.sync(' √ 商品同步任务完成 --');
+                            return Promise.reject(false);
+                        }
+                    })
+                    .then(bulk=>self.elasticsearch(bulk))
+                    .then(()=> {
+                        GLO.sync_timestamp = GLO.temp_timestamp;
+                        GLO.sync_boo = false;
+                        GLO.sync(' √ 商品同步任务成功 --');
+                    })
+                    .catch(error=> {
+                        if (error) {
+                            GLO.eLog(error);
+                        }
+                    })
+                ;
             }
         });
     }

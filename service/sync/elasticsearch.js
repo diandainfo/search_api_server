@@ -18,7 +18,7 @@ module.exports = bulk=>new Promise((resolve, reject)=>
             if (resp.errors) {
                 reject(GLO.eLog(resp, '批量索引商品数据失败'));
             } else {
-                resolve(true);
+                resolve();
             }
         }
     })

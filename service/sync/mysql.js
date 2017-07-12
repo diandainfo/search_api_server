@@ -15,7 +15,7 @@ const PAGE_LENGTH = 10000;
 const _ = {
     // 查询goods数据的sql语句
     getGoodsSQL: (timestamp, offset = 0, limit = PAGE_LENGTH)=>new Promise((resolve, reject)=>
-        fs.readFile('../../sql/shelf_goods.sql'     // 不能直接使用require，特殊字符导致js解析失败，如: `
+        fs.readFile(require('path').join(__dirname, '../../sql/shelf_goods.sql')     // 不能直接使用require，特殊字符导致js解析失败，如: `
             , 'utf8'
             , (error, sql)=> {
                 if (error) {

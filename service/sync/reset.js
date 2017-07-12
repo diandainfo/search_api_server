@@ -20,6 +20,6 @@ module.exports = results=> {
         bulk.push({index: {_index: index.alias.name, _type: Object.keys(index.mapping)[0], _id: on_sell_good_id}});
         bulk.push(good);
     });
-    GLO.debug(bulk, 'db2es-bulk');
+    // GLO.debug(bulk, 'db2es-bulk');
     return bulk;
 };

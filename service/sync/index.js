@@ -24,15 +24,15 @@ module.exports = {
     , redis: require('./redis')
 
     // 定时同步任务
-    , syncEvery: function () {
+    , syncEveryHeart: function () {
         const self = this;
         return new Promise((resolve,reject)=>{
             if(GLO.sync_boo){ // 已有同步任务在执行
-                resolve('已有同步任务在执行');
+                resolve(' × 已有同步任务在执行');
             }else{
                 // 标记当前时间
                 GLO.temp_timestamp = new Date().getTime();
-                self.mysql.getGoodsSQL(GLO.temp_timestamp);
+                // self.mysql.getGoodsSQL(GLO.temp_timestamp);
             }
         });
     }

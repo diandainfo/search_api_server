@@ -36,7 +36,7 @@ const _ = {
 
     // 每日6-23点 每30分钟存一次同步时间戳
     , saveTimestamp: ()=> {
-        schedule.scheduleJob('30 */30 6-23 * * *', ()=> {
+        schedule.scheduleJob('55 7/30 6-23 * * *', ()=> {
             syncService.redis.save(GLO.sync_timestamp);
         });
         GLO.log(' √ 定时任务:Redis存储时间戳 - 创建成功 --', 'start');

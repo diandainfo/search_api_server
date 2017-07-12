@@ -5,3 +5,15 @@
  */
 
 "use strict";
+
+// 项目启动的初始化
+const _ = {
+    //TODO Redis中时间戳写入到全局变量
+    //TODO 
+    //TODO 
+    //TODO 
+};
+
+module.exports = ()=>new Promise((resolve, reject)=> {
+    resolve(true);
+});

@@ -35,6 +35,7 @@ const _ = {
     }
 
     // 每日6-23点 每30分钟存一次同步时间戳
+    //TODO 每隔30小时的，7、37执行
     , saveTimestamp: ()=> {
         schedule.scheduleJob('55 7/30 6-23 * * *', ()=> {
             syncService.redis.save(GLO.sync_timestamp);

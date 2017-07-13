@@ -12,7 +12,7 @@
 - 仅限内网访问
 > 见 [public/docs/README.md](./public/docs/README.md)
 
-> 感谢 [chjj/marked@GitHub](https://github.com/chjj/marked),文档MarkDown基于此生成html
+> 感谢 [chjj/marked@GitHub](https://github.com/chjj/marked)，MarkDown文档基于此生成html
 
 ## 项目进度
 
@@ -33,12 +33,13 @@
 |1.3|别名、索引创建|根据检查结果，先创建索引setting、后mapping、后别名|2017年7月7日|
 |1.4|ES定时任务|||
 |1.4.1|时间戳同步任务||2017年7月12日|
-|1.4.2|数据同步任务|||
-|1.4.3|数据检查任务|||
+|1.4.2|心跳数据同步任务|具体见2|2017年7月11日|
+|1.4.3|单日数据检查任务|||
 |1.6|ES索引数据结构设计|||
 |1.6.1|增加`Completion Suggester`|||
 |1.6.2|增加`Context Suggester`|||
-|1.7||||
+|1.7|项目启动初始化||2017年7月13日|
+|1.8|数据冷启动|||
 |||||
 |2|数据同步逻辑|-|-|
 |2.0|Mysql-jdbc连接|-|2017年7月7日|

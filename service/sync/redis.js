@@ -37,8 +37,10 @@ const _ = {
         client.get(KEY, (err, reply)=> {
             if (err) {
                 reject(err);
+                client.quit();
             } else {
                 resolve(reply);
+                client.quit();
             }
         });
     })

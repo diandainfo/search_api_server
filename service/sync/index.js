@@ -45,7 +45,7 @@ module.exports = {
                             GLO.sync(' × 无需要增量的商品');
                             GLO.sync_boo = false;
                             GLO.sync(' √ 商品同步任务完成 --');
-                            return Promise.reject(false);
+                            return Promise.reject(false); // 直接结束Promise调用链
                         }
                     })
                     .then(bulk=>self.elasticsearch(bulk))
@@ -57,6 +57,7 @@ module.exports = {
                     .catch(error=> {
                         if (error) {
                             GLO.eLog(error);
+                            reject(error);
                         }
                     })
                 ;
@@ -65,6 +66,10 @@ module.exports = {
     }
 
     // TODO 冷启动
+    , init: require('./init')
 
     // TODO 单日同步任务
+    , syncEveryToday: function () {
+
+    }
 };

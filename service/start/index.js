@@ -52,10 +52,10 @@ const _ = {
     // 项目启动 - 执行任务
     , run: ()=>
         _.ping()
-            .then(()=> _.needCheck() ? _.check() : false) // ES索引检查
-            .then(_.create) // ES索引创建
-            .then(_.init)   // 项目初始化
-            .then(_.schedule)   // 定时任务
+            .then(()=> _.needCheck() ? _.check() : false)   // ES索引检查
+            .then(_.create)                                 // ES索引创建
+            .then(_.init)                                   // 项目初始化
+            .then(_.schedule)                               // 定时任务
             .catch(error=>GLO.error(error))
 };
 

@@ -16,8 +16,12 @@ const _ = {
             .read()
             .then(timstamp=> {
                 GLO.log(' √ Redis中同步时间戳 读取成功 --');
-                GLO.sync_timestamp = parseInt(timstamp);
-                resolve();
+                if (timstamp) {
+                    GLO.sync_timestamp = parseInt(timstamp);
+                    resolve(true);
+                } else {
+                    resolve(false);
+                }
             })
             .catch(err=>reject(GLO.eLog(err, ' × Redis中同步时间戳 读取失败')))
     )
@@ -26,6 +30,12 @@ const _ = {
 module.exports = ()=>new Promise((resolve, reject)=> {
     GLO.log('----- 项目启动初始化', 'start');
     _.readTimestamp()
-        .then(()=>resolve(true))
+        .then(r=> {  // 是否已有时间戳，来判断是否是冷启动
+            if (r) {
+                return true;
+            } else {
+                return syncService.init(); // 冷启动调用
+            }
+        })
         .catch(error=>reject(error));
 });

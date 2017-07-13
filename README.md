@@ -9,8 +9,8 @@
 - 部分目录下存在 `test.js`，用于开发时测试当前目录的功能，同时也是调用实例
 
 ## 接口文档
-- 仅限内网访问
-> 见 [public/docs/README.md](./public/docs/README.md)
+- 接口仅限内网访问
+- #### 具体文档见 [public/docs/README.md](./public/docs/README.md)
 
 > 感谢 [chjj/marked@GitHub](https://github.com/chjj/marked)，MarkDown文档基于此生成html
 
@@ -31,7 +31,7 @@
 |1.1|ES节点连接||2017年7月4日|
 |1.2|别名、索引检查|先检查别名，后索引|2017年7月5日|
 |1.3|别名、索引创建|根据检查结果，先创建索引setting、后mapping、后别名|2017年7月7日|
-|1.4|ES定时任务|||
+|1.4|ES定时任务|-|-|
 |1.4.1|时间戳同步任务||2017年7月12日|
 |1.4.2|心跳数据同步任务|具体见2|2017年7月11日|
 |1.4.3|单日数据检查任务|||

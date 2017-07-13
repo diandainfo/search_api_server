@@ -27,17 +27,16 @@ const _ = {
     }
 
     // 每日00:30:30点 开始检查前一日同步数据
-    , syncToday: ()=> {
+    , syncEveryToday: ()=> {
         const job = schedule.scheduleJob('30 30 0 * * *', ()=> {
 
         });
         GLO.log(' √ 定时任务:前日数据检查 - 创建成功 --', 'start');
     }
 
-    // 每日6-23点 每30分钟存一次同步时间戳
-    //TODO 每隔30小时的，7、37执行
+    // 每日6-23点 每小时存一次同步时间戳
     , saveTimestamp: ()=> {
-        schedule.scheduleJob('55 24/30 6-23 * * *', ()=> {
+        schedule.scheduleJob('55 29 6-23 * * *', ()=> {
             syncService.redis.save(GLO.sync_timestamp);
         });
         GLO.log(' √ 定时任务:Redis存储时间戳 - 创建成功 --', 'start');
@@ -47,5 +46,5 @@ const _ = {
 module.exports = ()=> {
     GLO.log('----- 开始创建定时任务 -----', 'start');
     // _.syncEveryHeart();
-    _.saveTimestamp();
+    // _.saveTimestamp();
 };

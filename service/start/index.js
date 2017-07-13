@@ -16,7 +16,7 @@ const _ = {
     ping: () =>
         new Promise((resolve, reject)=>
             ElasticSearchClient.ping({
-                requestTimeout: 10000 // 延迟相应时间为10s
+                requestTimeout: 10000 // 延迟响应时间为10s
             }).then(()=> {
                 GLO.log('启动检查 - ElasticSearch 节点连接成功', 'start');
                 resolve();

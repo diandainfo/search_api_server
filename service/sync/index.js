@@ -65,7 +65,7 @@ module.exports = {
         });
     }
 
-    // TODO 冷启动
+    // 冷启动
     , init: require('./init')
 
     // TODO 单日同步任务

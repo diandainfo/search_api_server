@@ -32,7 +32,7 @@ module.exports = ()=>new Promise((resolve, reject)=> {
     _.readTimestamp()
         .then(r=> {  // 是否已有时间戳，来判断是否是冷启动
             if (r) {
-                return true;
+                return resolve(true);
             } else {
                 return syncService.init(); // 冷启动调用
             }

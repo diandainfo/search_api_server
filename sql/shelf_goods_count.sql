@@ -8,7 +8,8 @@ FROM
 		AND `FirstCatalog`.`type` = "first"
 		LEFT JOIN catalogs AS `SecondCatalog` ON `SecondCatalog`.id = `on_sell_goods`.SecondCatalogId
 		AND `SecondCatalog`.`type` = "second"
-		LEFT JOIN mall_qoas AS `QOA` ON `QOA`.GoodId = `on_sell_goods`.id
+		LEFT JOIN mall_qoas AS `QOA` ON `QOA`.GoodId = `on_sell_goods`.GoodId
+		AND `QOA`.WarehouseId = `on_sell_goods`.WarehouseId
 		LEFT JOIN warehouses AS `Warehouses` ON `Warehouses`.id = `on_sell_goods`.WarehouseId
 	)
 ## WHERE

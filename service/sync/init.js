@@ -55,6 +55,7 @@ module.exports = ()=>new Promise((resolve, reject)=> {
         .then(sql=>_.getGoodsData(sql))                 // 获取数量
         .then(results=>results[0].count)
         .then(count=> {
+            GLO.sync('-- 共需要同步【' + count + '】个商品');
             if (count > 0) {
                 return _.setQuery(count);
             } else {

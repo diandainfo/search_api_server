@@ -13,6 +13,8 @@ node_modules/
 
 # sql
 sql/shelf_goods.sql
+sql/shelf_goods_count.sql
+sql/shelf_goods_mutex.sql
 
 # logs
 logs/

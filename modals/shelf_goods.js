@@ -26,6 +26,7 @@ class Shelf_Goods {
         }
         this.warehouse_id = g.warehouse_id;
         this.warehouse_type = g.warehouse_type;
+        this.warehouse_conflict = g.warehouse_conflict;
         this.good_id = g.good_id;
         this.stock = parseInt(g.stock || 0);
         this.first_catalog_id = g.first_catalog_id;

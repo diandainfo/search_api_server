@@ -9,6 +9,33 @@
 const config = require('../config')['es']
     , indexName = 'shelf_goods';
 
+// Contexts Suggester
+const contexts = [{
+    type: 'category'
+    , name: 'city_id'
+    , path: 'city_id'
+}, {
+    type: 'category'
+    , name: 'warehouse_id'
+    , path: 'warehouse_id'
+}, {
+    type: 'category'
+    , name: 'warehouse_type'
+    , path: 'warehouse_type'
+}, {
+    type: 'category'
+    , name: 'warehouse_conflict'
+    , path: 'warehouse_conflict'
+}, {
+    type: 'category'
+    , name: 'state'
+    , path: 'state'
+}, {
+    type: 'category'
+    , name: 'stock'
+    , path: 'stock'
+}];
+
 const mapping = {
     info: {
         properties: {
@@ -31,29 +58,22 @@ const mapping = {
                 , analyzer: "only_pinyin_analyzer"
                 , search_analyzer: 'only_pinyin_analyzer'
                 , preserve_separators: false                // 忽略分隔符
-                , contexts: [{
-                    type: 'category'
-                    , name: 'city_id'
-                    , path: 'city_id'
-                }]
+                , contexts: contexts
             }, title_pinyin_full: {
                 type: "completion"
                 , analyzer: "full_pinyin_analyzer"
                 , search_analyzer: 'full_pinyin_analyzer'
                 , preserve_separators: false
-                , contexts: [{
-                    type: 'category'
-                    , name: 'city_id'
-                    , path: 'city_id'
-                }]
+                , contexts: contexts
             }
 
             // ----- 销售筛选条件
             , city_id: {type: "integer"}                    // 城市编号
-            , area_id: {type: "integer"}                    // 可销售区域编号
+            , area_id: {type: "integer"}                    // 不可销售区域编号
             , warehouse_id: {type: "integer"}               // 仓库编号
-            , warehouse_boo: {type: "boolean"}              // 是否为前置仓、主仓冲突
-            , state: {type: "integer"}                      // 销售状态
+            , warehouse_type: {type: "integer"}             // 仓库类型:1是主仓，2是前置仓
+            , warehouse_conflict: {type: "integer"}         // 是否为前置仓、主仓冲突:0是冲突，1是非冲突
+            , state: {type: "integer"}                      // 销售状态:0是已下架，1是正常销售
 
             // ----- 实时数据
             , stock: {type: "integer"}                      // 库存数量

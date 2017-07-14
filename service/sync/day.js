@@ -1,14 +1,16 @@
 /**
- * Created by zhangrz on 2017/7/13.
+ * Created by zhangrz on 2017/7/14.
  * Copyright© 2015-2020 DianDaInfo (https://github.com/diandainfo)
  * @version 0.0.1 created
  */
 
 "use strict";
 
-// 项目冷启动的数据同步
+// 昨日商品的同步任务
 
 const mysql = require('./mysql');
+
+let timestamp = 0; // 昨日时间戳
 
 const _ = Object.assign({
     // 分拆查询结构体
@@ -33,8 +35,8 @@ const _ = Object.assign({
     // 进行查询
     , query: offset=>new Promise((resolve, reject)=> {
         const str = offset + ' 到 ' + (offset + _.page_length - 1);
-        GLO.sync(' - 冷启动同步商品数据:' + str);
-        _.getGoodsSQL(0, offset, _.page_length)
+        GLO.sync(' - 同步昨日商品数据:' + str);
+        _.getGoodsSQL(timestamp, offset, _.page_length)
             .then(sql=>_.getGoodsData(sql))
             .then(results=> require('./reset')(results))
             .then(bulk=>require('./elasticsearch')(bulk))
@@ -46,26 +48,29 @@ const _ = Object.assign({
     })
 }, mysql);
 
-module.exports = ()=>new Promise((resolve, reject)=> {
-    GLO.sync('----- 冷启动同步商品数据');
-    // 标记启动时间
-    GLO.temp_timestamp = new Date().getTime();
-    GLO.sync_timestamp = 0;
-    _.getGoodsCountSQL(0)                               // 拿到SQL
+module.exports = dateTime=>new Promise((resolve, reject)=> {
+    timestamp = dateTime;
+    GLO.sync('----- 同步昨日商品数据');
+    _.getGoodsCountSQL(timestamp)                     // 拿到SQL
         .then(sql=>_.getGoodsData(sql))                 // 获取数量
         .then(results=>results[0].count)
         .then(count=> {
-            GLO.sync('-- 共需要同步【' + count + '】个商品');
             if (count > 0) {
+                GLO.sync('-- 昨日共需要同步【' + count + '】个商品');
                 return _.setQuery(count);
+            } else if (count === 0) {
+                GLO.sync(' × 昨日无需同步商品数据 -----');
+                return Promise.reject(false);
             } else {
                 return Promise.reject(GLO.eLog(count, '获取商品数量出错'));
             }
         })
         .then(()=> {
-            GLO.sync(' √ 冷启动同步商品数据 成功 -----');
-            GLO.sync_timestamp = GLO.temp_timestamp;
-            require('./redis').save(GLO.sync_timestamp);     // 存储更新时间标记
+            GLO.sync(' √ 同步昨日商品数据 成功 -----');
         })
-        .catch(err=>reject(err));
+        .catch(err=> {
+            if (err) {
+                reject(err);
+            }
+        });
 });

@@ -16,7 +16,12 @@ const _ = {
     // 每页查询大小
     page_length: PAGE_LENGTH
 
-    // 查询goods数据的sql语句
+    /**
+     * 查询goods数据的sql语句
+     * @param timestamp/dateTime 时间戳或时间字符串均可
+     * @param offset
+     * @param limit
+     */
     , getGoodsSQL: (timestamp, offset = 0, limit = PAGE_LENGTH)=>new Promise((resolve, reject)=>
         fs.readFile(require('path').join(__dirname, '../../sql/shelf_goods.sql')     // 不能直接使用require，特殊字符导致js解析失败，如: `
             , 'utf8'
@@ -33,7 +38,10 @@ const _ = {
             })
     )
 
-    // 查询goods数据count值的sql语句
+    /**
+     * 查询goods数据count值的sql语句
+     * @param timestamp/dateTime 时间戳或时间字符串均可
+     */
     , getGoodsCountSQL: (timestamp)=>new Promise((resolve, reject)=>
         fs.readFile(require('path').join(__dirname, '../../sql/shelf_goods_count.sql')     // 不能直接使用require，特殊字符导致js解析失败，如: `
             , 'utf8'

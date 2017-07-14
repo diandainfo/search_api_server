@@ -59,8 +59,7 @@ module.exports = {
                             GLO.eLog(error);
                             reject(error);
                         }
-                    })
-                ;
+                    });
             }
         });
     }
@@ -68,8 +67,6 @@ module.exports = {
     // 冷启动
     , init: require('./init')
 
-    // TODO 单日同步任务
-    , syncEveryToday: function () {
-
-    }
+    // 单日同步任务
+    , syncEveryDay: require('./day')
 };

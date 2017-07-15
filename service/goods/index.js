@@ -5,3 +5,11 @@
  */
 
 "use strict";
+
+module.exports = {
+    // 搜索建议
+    suggest: require('./suggest')
+
+    // 搜索关键词
+    , search: require('./search')
+};

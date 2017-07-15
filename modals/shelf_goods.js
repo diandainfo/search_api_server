@@ -39,6 +39,11 @@ class Shelf_Goods {
         this.setUpdateTS(new Date(g.update_at).getTime());
     }
 
+    // ElasticSearch数据输出
+    es2api(){
+        
+    }
+
     // 写:商品名称
     setTitle(title) {
         this.title = title;

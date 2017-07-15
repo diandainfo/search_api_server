@@ -11,22 +11,22 @@ const config = require('../config')['es']
 
 // Contexts Suggester
 const contexts = [{
-    type: 'category'
-    , name: 'city_id'
-    , path: 'city_id'
-}, {
-    type: 'category'
-    , name: 'warehouse_id'
-    , path: 'warehouse_id'
-}, {
-    type: 'category'
-    , name: 'warehouse_type'
-    , path: 'warehouse_type'
-}, {
-    type: 'category'
-    , name: 'warehouse_conflict'
-    , path: 'warehouse_conflict'
-}, {
+//     type: 'category'
+//     , name: 'city_id'
+//     , path: 'city_id'
+// }, {
+//     type: 'category'
+//     , name: 'warehouse_id'
+//     , path: 'warehouse_id'
+// }, {
+//     type: 'category'
+//     , name: 'warehouse_type'
+//     , path: 'warehouse_type'
+// }, {
+//     type: 'category'
+//     , name: 'warehouse_conflict'
+//     , path: 'warehouse_conflict'
+// }, {
     type: 'category'
     , name: 'state'
     , path: 'state'
@@ -58,6 +58,7 @@ const mapping = {
                 , analyzer: "only_pinyin_analyzer"
                 , search_analyzer: 'only_pinyin_analyzer'
                 , preserve_separators: false                // 忽略分隔符
+                // TODO boost 纠错词
                 , contexts: contexts
             }, title_pinyin_full: {
                 type: "completion"

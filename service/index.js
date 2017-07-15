@@ -11,6 +11,7 @@ module.exports = {
     start: require('./start')
 
     // goods - 查询相关服务
+    , goods: require('./goods')
 
     // DB2ES数据同步服务
     , sync: require('./sync')

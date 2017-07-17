@@ -51,9 +51,8 @@ module.exports = {
     // , feedback: ()=> {
     // }
 
-    //TODO 搜索日志
-    //,search:()=>{
-    //}
+    // 搜索日志
+    , searchLog: msg=>logger('search').info(msg)
 
     /**
      * 同步任务日志

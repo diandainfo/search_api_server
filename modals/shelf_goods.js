@@ -33,15 +33,34 @@ class Shelf_Goods {
         this.second_catalog_id = g.second_catalog_id;
         this.first_catalog_name = g.first_catalog_name;
         this.second_catalog_name = g.second_catalog_name;
-        this.state = g.state;
+        this.state = g.state ? 1 : 0;
         this.setUpdatedAt();
         this.setCreateTS(new Date(g.create_at).getTime());
         this.setUpdateTS(new Date(g.update_at).getTime());
     }
 
-    // ElasticSearch数据输出
-    es2api(){
-        
+    // ElasticSearch 数据输出 到api
+    es2api(source) {
+        this.id = this.on_sell_good_id;
+        delete this.on_sell_good_id;
+        this.name = source.title;
+    }
+
+    // ElasticSearch 结果全字段输出
+    es2all(source) {
+        this.es2api(source);
+        this.cid = source.city_id;
+        this.state = source.state;
+        this.stock = source.stock;
+        this.wid = source.warehouse_id;
+        this.wty = source.warehouse_type;
+        this.wcf = source.warehouse_conflict;
+        this.fci = source.first_catalog_id;
+        this.sci = source.second_catalog_id;
+        this.fcn = source.first_catalog_name;
+        this.scn = source.second_catalog_name;
+        this.updateAt = source.update_at;
+        this.gid = source.good_id;
     }
 
     // 写:商品名称

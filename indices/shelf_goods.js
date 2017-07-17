@@ -48,24 +48,27 @@ const mapping = {
                 , analyzer: "ik_smart"
                 , search_analyzer: "ik_smart"
                 , term_vector: 'with_positions_offsets'
-            }, title_ik_max: {
+            }
+            , title_ik_max: {
                 type: "text"
                 , analyzer: "ik_max_word"
                 , search_analyzer: "ik_max_word"
                 , term_vector: 'with_positions_offsets'
-            }, title_pinyin_only: {
+            }
+            , title_pinyin_only: {
                 type: "completion"
                 , analyzer: "only_pinyin_analyzer"
                 , search_analyzer: 'only_pinyin_analyzer'
                 , preserve_separators: false                // 忽略分隔符
                 // TODO boost 纠错词
-                , contexts: contexts
-            }, title_pinyin_full: {
+                // , contexts: contexts                     // fixme Contexts suggester 效率有问题
+            }
+            , title_pinyin_full: {
                 type: "completion"
                 , analyzer: "full_pinyin_analyzer"
                 , search_analyzer: 'full_pinyin_analyzer'
                 , preserve_separators: false
-                , contexts: contexts
+                // , contexts: contexts
             }
 
             // ----- 销售筛选条件

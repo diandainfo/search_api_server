@@ -6,7 +6,8 @@
 
 "use strict";
 
-const client = require('../../utils/elasticSearch').client.dn;
+const client = require('../../utils/elasticSearch').client.dn
+    , query = require('./query');
 
 const INDEX = 'shelf_goods';
 
@@ -19,7 +20,7 @@ const _ = {
 
     // 建议 - 商品
     , goods: data=>new Promise((resolve, reject)=> {
-        const query = field=> ({
+        const suggest = field=> ({
             prefix: data.key
             , completion: {
                 field: field
@@ -27,13 +28,18 @@ const _ = {
             }
         });
         const body = {
-            pinyin_only: query('title_pinyin_only')
-            , pinyin_full: query('title_pinyin_full')
+            size: 1
+            , query: query(data)
+            // ,stored_fields: "_none_"         // 关闭显示搜索结果docs
+            // , suggest: {
+            //     pinyin_only: suggest('title_pinyin_only')
+            //     , pinyin_full: suggest('title_pinyin_full')
+            // }
         };
         GLO.debug(body);
-        client.suggest({
+        client.search({
             index: INDEX
-            , body:  body
+            , body: body
         }, (error, resp)=> {
             if (error) {
                 reject(GLO.eLog(error, '获取建议商品出错'));

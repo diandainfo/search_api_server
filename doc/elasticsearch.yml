@@ -94,7 +94,7 @@ transport.tcp.port: 9310
 #
 #action.destructive_requires_name: true
 #
-# ---------------------------------- X-pack --------------------------
+# ---------------------------------- X-pack ------------------------------------
 #
 xpack.ml.enabled: false  
 xpack.monitoring.enabled: false

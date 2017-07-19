@@ -17,8 +17,15 @@
 
 ***
 
-- 版本升级
-  - > [Elasticsearch Reference [5.4] » Setup Elasticsearch » Upgrading Elasticsearch][01]
+- 版本管理
+  - Upgrade
+    - > [Elasticsearch Reference [5.4] » Setup Elasticsearch » Upgrading Elasticsearch][01]
+  - History
+    - > [Past Releases[02]
+
+[01]: https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html
+[02]: https://www.elastic.co/downloads/past-releases
+***
 
 - ElasticSearch 
   - version : 5.4.3
@@ -64,15 +71,68 @@
     bin/elasticsearch &
     ```
 
-[01]: https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html
-
-[10]: https://www.elastic.co/cn/downloads/elasticsearch
+[10]: https://www.elastic.co/downloads/elasticsearch
 [13]: https://www.elastic.co/guide/en/elasticsearch/reference/current/_memory_lock_check.html
 [14]: https://www.elastic.co/guide/en/elasticsearch/reference/current/system-call-filter-check.html
 [16]: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html
 [17]: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html
 [18]: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-transport.html
 
+***
+
+- Logstash
+  - version : 5.4.3
+  - 安装
+    - > [Download Logstash & Installation Steps][21]
+    - 步骤
+      ```
+      wget https://artifacts.elastic.co/downloads/logstash/logstash-5.4.3.tar.gz
+      tar -zxvf logstash-5.4.3.tar.gz
+      ```
+    - 配置
+      > [Configuring Logstash for Filebeat Input][22] 
+      - filter
+        > [Logstash Reference [5.4] » Filter plugins » grok][231]
+        > [Grok Constructor][232]
+        > [Grok Constructor » Pattern Translation][233]
+    
+
+[21]: https://www.elastic.co/downloads/logstash
+[22]: https://www.elastic.co/guide/en/logstash/5.4/advanced-pipeline.html#_configuring_logstash_for_filebeat_input
+[231]: https://www.elastic.co/guide/en/logstash/5.4/plugins-filters-grok.html
+[232]: http://grokconstructor.appspot.com/
+[233]: http://grokconstructor.appspot.com/do/translator
+***
+
+- Filebeat
+  - version : 5.4.3
+  - 安装
+    - > [Installation Steps][701]
+    - 步骤
+      - 下载 release 对应的 tar.gz [Filebeat 5.4.3][702]
+        ```
+        wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.4.3-linux-x86_64.tar.gz
+        tar -zxvf filebeat-5.4.3-linux-x86_64.tar.gz
+        ```
+      - 配置 `filebeat.yml`
+        > [Configuring Filebeat to Send Log Lines to Logstash][703] 
+        ```
+        filebeat.prospectors:
+        - input_type: log
+          paths:
+            - .../search_api_server/trunk/logs/search.log  ## 搜索日志的存储目录
+        output.logstash:
+          hosts: ["localhost:5043"]     ## Logstash的请求地址
+        ``` 
+      - 启动
+        ```
+        sudo ./filebeat -e -c filebeat.yml -d "publish"
+        ``` 
+
+
+[701]: https://www.elastic.co/downloads/beats/filebeat
+[702]: https://www.elastic.co/downloads/past-releases/filebeat-5-4-3
+[703]: https://www.elastic.co/guide/en/logstash/5.4/advanced-pipeline.html#configuring-filebeat
 ***
 
 - Kibana
@@ -172,9 +232,3 @@
 
 ***
 
-- Filebeat
-  - version : 5.4.3
-  - 安装
-    - > [][]
-
-***

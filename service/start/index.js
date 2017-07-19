@@ -54,7 +54,7 @@ const _ = {
         _.ping()
             .then(()=> _.needCheck() ? _.check() : false)   // ES索引检查
             .then(_.create)                                 // ES索引创建
-            .then(_.init)                                   // 项目初始化
+            .then(create=>_.init)                                   // 项目初始化
             .then(_.schedule)                               // 定时任务
             .catch(error=>GLO.error(error))
 };

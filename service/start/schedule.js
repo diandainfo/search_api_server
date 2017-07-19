@@ -52,9 +52,13 @@ const _ = {
     }
 };
 
-module.exports = ()=> {
-    GLO.log('----- 开始创建定时任务 -----', 'start');
-    // _.syncEveryHeart();
-    // _.saveTimestamp();
-    // _.syncEveryDay();
+module.exports = init=> {
+    if (init) {
+        GLO.log('----- 开始创建定时任务 -----', 'start');
+        // _.syncEveryHeart();
+        // _.saveTimestamp();
+        // _.syncEveryDay();
+    } else {
+        GLO.log('----- 无需创建定时任务 -----', 'start');
+    }
 };

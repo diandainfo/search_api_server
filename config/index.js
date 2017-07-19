@@ -8,7 +8,7 @@
 
 const CONFIG = {
     development: require('./config_development')
-    // , test: require('./config_test')
+    , test: require('./config_test')
     // , experience: require('./config_experience')
     // , stage: require('./config_stage')
     // , production: require('./config_production')

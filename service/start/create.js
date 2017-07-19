@@ -14,7 +14,7 @@ const printF = info=>GLO.log(info, 'start');
 
 module.exports = check=>new Promise((resolve, reject)=> {
     GLO.debug(check, 'check-result');
-    if (Object.keys(check.indices).length > 0 || Object.keys(check.aliases).length > 0) {
+    if (check && ( Object.keys(check.indices).length > 0 || Object.keys(check.aliases).length > 0)) {
         printF('----- 开始创建 索引、别名 -----');
         const {indices, aliases}=check;
         // 创建索引和映射

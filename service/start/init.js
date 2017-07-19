@@ -27,15 +27,20 @@ const _ = {
     )
 };
 
-module.exports = ()=>new Promise((resolve, reject)=> {
-    GLO.log('----- 项目启动初始化', 'start');
-    _.readTimestamp()
-        .then(r=> {  // 是否已有时间戳，来判断是否是冷启动
-            if (r) {
-                return resolve(true);
-            } else {
-                return syncService.init(); // 冷启动调用
-            }
-        })
-        .catch(error=>reject(error));
+module.exports = needInit=>new Promise((resolve, reject)=> {
+    if (needInit) {
+        GLO.log('----- 启动项目初始化', 'start');
+        _.readTimestamp()
+            .then(r=> {  // 是否已有时间戳，来判断是否是冷启动
+                if (r) {
+                    return resolve(true);
+                } else {
+                    return syncService.init(); // 冷启动调用
+                }
+            })
+            .catch(error=>reject(error));
+    } else {
+        GLO.log('----- 无需启动项目初始化', 'start');
+        return resolve(false);
+    }
 });

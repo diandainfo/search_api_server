@@ -6,8 +6,7 @@
 
 "use strict";
 
-const client = require('../../utils/elasticSearch').client.dn
-    , query = require('./query');
+const client = require('../../utils/elasticSearch').client.dn;
 
 const INDEX = 'shelf_goods';
 
@@ -27,9 +26,21 @@ const _ = {
                 , size: 1
             }
         });
+        const query = require('./query')(data);
+        query.bool.should = [{
+            match_phrase: {
+                title_pinyin_only: data.key
+            }
+        }, {
+            match_phrase: {
+                title_pinyin_full: data.key
+            }
+        }];
+        query.bool.minimum_should_match = 1;
         const body = {
-            size: 1
-            , query: query(data)
+            size: 10
+            , query: query
+            // fixme 使用Completion Suggester 无法进行条件过滤
             // ,stored_fields: "_none_"         // 关闭显示搜索结果docs
             // , suggest: {
             //     pinyin_only: suggest('title_pinyin_only')

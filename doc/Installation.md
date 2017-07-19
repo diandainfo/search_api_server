@@ -92,9 +92,9 @@
     - 配置
       > [Configuring Logstash for Filebeat Input][22] 
       - filter
-        > [Logstash Reference [5.4] » Filter plugins » grok][231]
-        > [Grok Debugger][232]
-        > [Grok List][233]
+        - > [Logstash Reference [5.4] » Filter plugins » grok][231]
+        - > [Grok Debugger][232]
+        - > [Grok List][233]
       - eg.
         ```
         [2017-07-19 14:53:33.262] [INFO] search -  320600 -1 爽歪歪 1

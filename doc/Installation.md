@@ -93,15 +93,40 @@
       > [Configuring Logstash for Filebeat Input][22] 
       - filter
         > [Logstash Reference [5.4] » Filter plugins » grok][231]
-        > [Grok Constructor][232]
-        > [Grok Constructor » Pattern Translation][233]
-    
+        > [Grok Debugger][232]
+        > [Grok List][233]
+      - eg.
+        ```
+        [2017-07-19 14:53:33.262] [INFO] search -  320600 -1 爽歪歪 1
+        [2017-07-19 17:38:44.580] [INFO] search -  320600 -1 爽歪歪 1
+        [2017-07-19 17:50:11.208] [INFO] search -  320600 -1 爽歪歪 1
+        [2017-07-19 17:52:25.938] [INFO] search -  320600 -1 爽歪歪 1
+        [2017-07-19 18:04:21.069] [INFO] search -  320600 -1 爽歪歪 1
+        [2017-07-19 18:09:19.877] [INFO] search -  320600 -1 爽歪歪 1
+        [2017-07-19 18:09:20.060] [INFO] search -  320600 -1 爽歪歪 1
+        [2017-07-19 18:09:28.149] [INFO] search -  320600 -1 娃哈哈 5
+        [2017-07-19 18:11:37.562] [INFO] search -  320600 -1 娃哈哈 5
+        [2017-07-19 18:11:39.776] [INFO] search -  320600 -1 娃哈哈 5
+        [2017-07-19 18:19:59.585] [INFO] search -  320600 -1 娃哈哈 5
+        [2017-07-19 18:20:01.060] [INFO] search -  320600 -1 娃哈哈 5
+        [2017-07-19 18:31:08.791] [INFO] search -  320600 -1 娃哈哈 5
+        [2017-07-19 18:31:08.957] [INFO] search -  320600 -1 娃哈哈 5
+        [2017-07-19 18:31:18.238] [INFO] search -  320600 -1 爽歪歪 1
+        ```
+        以上的日志，可使用以下解析：
+        ```
+        \[%{TIMESTAMP_ISO8601:logdate}\] \[%{LOGLEVEL:level}\] %{WORD} \-  %{NUMBER:city_id} %{NUMBER:store_id} (?<keyword>\S+?) %{NUMBER:count}
+        ``` 
+  - 参考文档
+    > [What should be the logstash grok filter for this log4j log?][291] 
 
 [21]: https://www.elastic.co/downloads/logstash
 [22]: https://www.elastic.co/guide/en/logstash/5.4/advanced-pipeline.html#_configuring_logstash_for_filebeat_input
 [231]: https://www.elastic.co/guide/en/logstash/5.4/plugins-filters-grok.html
-[232]: http://grokconstructor.appspot.com/
-[233]: http://grokconstructor.appspot.com/do/translator
+[232]: https://grokdebug.herokuapp.com/
+[233]: https://github.com/logstash-plugins/logstash-patterns-core/tree/master/patterns
+
+[291]: https://stackoverflow.com/questions/37931563/what-should-be-the-logstash-grok-filter-for-this-log4j-log
 ***
 
 - Filebeat

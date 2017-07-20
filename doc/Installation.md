@@ -95,28 +95,27 @@
         - > [Logstash Reference [5.4] » Filter plugins » grok][231]
         - > [Grok Debugger][232]
         - > [Grok List][233]
-      - eg.
-        ```
-        [2017-07-19 14:53:33.262] [INFO] search -  320600 -1 爽歪歪 1
-        [2017-07-19 17:38:44.580] [INFO] search -  320600 -1 爽歪歪 1
-        [2017-07-19 17:50:11.208] [INFO] search -  320600 -1 爽歪歪 1
-        [2017-07-19 17:52:25.938] [INFO] search -  320600 -1 爽歪歪 1
-        [2017-07-19 18:04:21.069] [INFO] search -  320600 -1 爽歪歪 1
-        [2017-07-19 18:09:19.877] [INFO] search -  320600 -1 爽歪歪 1
-        [2017-07-19 18:09:20.060] [INFO] search -  320600 -1 爽歪歪 1
-        [2017-07-19 18:09:28.149] [INFO] search -  320600 -1 娃哈哈 5
-        [2017-07-19 18:11:37.562] [INFO] search -  320600 -1 娃哈哈 5
-        [2017-07-19 18:11:39.776] [INFO] search -  320600 -1 娃哈哈 5
-        [2017-07-19 18:19:59.585] [INFO] search -  320600 -1 娃哈哈 5
-        [2017-07-19 18:20:01.060] [INFO] search -  320600 -1 娃哈哈 5
-        [2017-07-19 18:31:08.791] [INFO] search -  320600 -1 娃哈哈 5
-        [2017-07-19 18:31:08.957] [INFO] search -  320600 -1 娃哈哈 5
-        [2017-07-19 18:31:18.238] [INFO] search -  320600 -1 爽歪歪 1
-        ```
-        以上的日志，可使用以下解析：
-        ```
-        \[%{TIMESTAMP_ISO8601:logdate}\] \[%{LOGLEVEL:level}\] %{WORD} \-  %{NUMBER:city_id} %{NUMBER:store_id} (?<keyword>\S+?) %{NUMBER:count}
-        ``` 
+        - eg.
+          ```
+          [2017-07-19 14:53:33.262] [INFO] search -  320600 -1 爽歪歪 1
+          [2017-07-19 18:31:08.957] [INFO] search -  320600 -1 娃哈哈 5
+          ```
+          以上的日志，可使用以下解析：
+          ```
+          \[%{TIMESTAMP_ISO8601:logdate}\] \[%{LOGLEVEL:level}\] %{WORD} \-  %{NUMBER:city_id} %{NUMBER:store_id} (?<keyword>\S+?) %{NUMBER:count}
+          ```
+      - output
+        输出到`ElasticSearch`的配置
+        - 设置自定义的`index`和`type`
+          - > [Elasticsearch Output Configuration Options][241]
+          - > 设置 [index][242] 和 [type][243]
+        - 设置 `mapping template`
+          - > [Using Logstash to help create an Elasticsearch mapping template][245]
+    - 启动
+      ```
+      ./bin/logstash -f search-pipeline.conf --config.reload.automatic &
+      ps -ef | grep logstash
+      ```
   - 参考文档
     > [What should be the logstash grok filter for this log4j log?][291] 
 
@@ -126,7 +125,13 @@
 [232]: https://grokdebug.herokuapp.com/
 [233]: https://github.com/logstash-plugins/logstash-patterns-core/tree/master/patterns
 
+[241]: https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-options
+[242]: https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-index
+[243]: https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-document_type
+[245]: https://www.elastic.co/blog/logstash_lesson_elasticsearch_mapping
+
 [291]: https://stackoverflow.com/questions/37931563/what-should-be-the-logstash-grok-filter-for-this-log4j-log
+
 ***
 
 - Filebeat
@@ -151,13 +156,18 @@
         ``` 
       - 启动
         ```
-        sudo ./filebeat -e -c filebeat.yml -d "publish"
-        ``` 
+        ./filebeat -e -c filebeat.yml -d "publish" &
+        ps -ef | grep filebeat
+        ```
+       - 过程持久化
+         - > [Logstash Reference [5.4] » Setting Up and Running Logstash » Persistent Queues][711]
 
 
 [701]: https://www.elastic.co/downloads/beats/filebeat
 [702]: https://www.elastic.co/downloads/past-releases/filebeat-5-4-3
 [703]: https://www.elastic.co/guide/en/logstash/5.4/advanced-pipeline.html#configuring-filebeat
+
+[711]: https://www.elastic.co/guide/en/logstash/5.4/persistent-queues.html
 ***
 
 - Kibana

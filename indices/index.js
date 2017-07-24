@@ -11,4 +11,4 @@ module.exports = {
     shelf_goods: require('./shelf_goods')
     // 搜索日志
     , search_log: require('./search_log')
-};
+}; 

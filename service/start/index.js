@@ -52,11 +52,17 @@ const _ = {
     // 项目启动 - 执行任务
     , run: ()=>
         _.ping()
-            .then(()=> _.needCheck() ? _.check() : false)   // ES索引检查
-            .then(_.create)                                 // ES索引创建
-            .then(create=>_.init)                                   // 项目初始化
-            .then(_.schedule)                               // 定时任务
-            .catch(error=>GLO.error(error))
+            .then(()=> _.needCheck() ? _.check() : Promise.reject(false))   // ES索引检查
+            .then(_.create)                                                 // ES索引创建
+            .then(_.init)                                                   // 项目初始化
+            .then(_.schedule)                                               // 定时任务
+            .catch(error=> {
+                if (error) {
+                    GLO.error(error);
+                } else {
+                    GLO.log('----- × 非检查节点，无需检查 -----','start');
+                }
+            })
 };
 
 module.exports = _;

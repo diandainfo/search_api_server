@@ -8,7 +8,7 @@
 
 // 创建 - 索引、别名
 
-const ElasticSearchClient = require('../../utils/elasticSearch').client.dn;
+const ElasticSearchClient = require('../../utils/elasticsearch').client.dn;
 
 const printF = info=>GLO.log(info, 'start');
 

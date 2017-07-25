@@ -9,7 +9,7 @@
 // 检查 - 别名、索引
 
 const Indices = require('../../indices')
-    , ElasticSearchClient = require('../../utils/elasticSearch').client.dn;
+    , ElasticSearchClient = require('../../utils/elasticsearch').client.dn;
 
 const printF = info=>GLO.log(info, 'start');
 

@@ -6,7 +6,7 @@
 
 "use strict";
 
-const ElasticSearchClient = require('../../utils/elasticSearch').client.dn
+const ElasticSearchClient = require('../../utils/elasticsearch').client.dn
     , config = require('../../config')
     , methodUtils = require('../../utils/method')
     , sLog = GLO.logger('es-start');

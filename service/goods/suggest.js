@@ -6,7 +6,7 @@
 
 "use strict";
 
-const client = require('../../utils/elasticSearch').client.dn;
+const client = require('../../utils/elasticsearch').client.dn;
 
 const INDEX = 'shelf_goods';
 

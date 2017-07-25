@@ -92,9 +92,14 @@
     - 配置
       > [Configuring Logstash for Filebeat Input][22] 
       - filter
+        - > [logstash之filter插件][230]
         - > [Logstash Reference [5.4] » Filter plugins » grok][231]
         - > [Grok Debugger][232]
         - > [Grok List][233]
+        - 日志数据清洗
+          删除字段
+          - > [logstash采集与清洗数据到elasticsearch案例实战][234]
+          - > [How to remove fields in logstash/es][235]
         - eg.
           ```
           [2017-07-19 14:53:33.262] [INFO] search -  320600 -1 爽歪歪 1
@@ -109,7 +114,7 @@
         - 设置自定义的`index`和`type`
           - > [Elasticsearch Output Configuration Options][241]
           - > 设置 [index][242] 和 [type][243]
-        - 设置 `mapping template`
+        - 设置 `index template`
           - > [Using Logstash to help create an Elasticsearch mapping template][245]
     - 启动
       ```
@@ -117,13 +122,16 @@
       ps -ef | grep logstash
       ```
   - 参考文档
-    > [What should be the logstash grok filter for this log4j log?][291] 
+    - > [What should be the logstash grok filter for this log4j log?][291]
 
 [21]: https://www.elastic.co/downloads/logstash
 [22]: https://www.elastic.co/guide/en/logstash/5.4/advanced-pipeline.html#_configuring_logstash_for_filebeat_input
+[230]: http://zengestudy.blog.51cto.com/1702365/1832818
 [231]: https://www.elastic.co/guide/en/logstash/5.4/plugins-filters-grok.html
 [232]: https://grokdebug.herokuapp.com/
 [233]: https://github.com/logstash-plugins/logstash-patterns-core/tree/master/patterns
+[234]: http://www.infocool.net/kb/Other/201610/206636.html
+[235]: https://discuss.elastic.co/t/how-to-remove-fields-in-logstash-es/77039
 
 [241]: https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-options
 [242]: https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-index

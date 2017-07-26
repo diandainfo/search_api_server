@@ -20,7 +20,7 @@
 |:---|:---|:---|---|
 |0|Elastic Stack安装|见 [./doc/Installation.md](https://github.com/diandainfo/search_api_server/blob/master/doc/Installation.md)|-|
 |0.1|`system_call_filter`配置|*待刷*||
-|0.2|`Kibana`安装与配置|*待刷*||
+|0.2|`Kibana`安装与配置|-|2017年7月26日|
 |0.3|`ElasticSearch` 5.4.3 安装与运行|-|2017年7月6日|
 |0.4|`ElasticSearch-head` 5.x 安装与运行|-|2017年7月6日|
 |0.5|`ElasticSearch-analysis-ik` 5.4.3 安装|-|2017年7月7日|

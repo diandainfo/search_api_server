@@ -179,7 +179,24 @@
 ***
 
 - ## Kibana
-  - ### *待刷*
+  - version : 5.4.3
+  - 安装
+    ```
+        wget https://artifacts.elastic.co/downloads/kibana/kibana-5.4.3-linux-x86_64.tar.gz
+        tar -zxvf kibana-5.4.3-linux-x86_64.tar.gz
+        bin/kibana-plugin install x-pack
+    ```
+  - 配置，参见 `X-Pack` 部分，`Kibana` 配置，在 `kibana.yml` 中配置相关信息
+    ```
+        server.port: 5601                               ## 访问端口
+        server.host: "192.168.1.101"                    ## 访问地址
+        server.name: "dd-kibana"                        ## 服务名称
+        elasticsearch.url: "http://192.168.1.180:9210"  ## ES地址
+    ```
+  - 启动，使用 `development` 或 `production` 环境变量启动 `kibana`
+    ```
+         NODE_ENV=development bin/kibana
+    ```
 
 ***
 

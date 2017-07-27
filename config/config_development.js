@@ -15,7 +15,7 @@ module.exports = {
         , replicas: 0
         , log: 'trace'
         , check: true                               // 是否进行索引检查
-        , check_ip: '192.168.1.91'                  // 索引检查的ip
+        , check_ip: '192.168.1.92'                  // 索引检查的ip
         , data_node: {                              // data-node
             host: '192.168.1.180'
             , auth: 'elastic:changeme'

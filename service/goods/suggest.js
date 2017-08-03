@@ -8,13 +8,66 @@
 
 const client = require('../../utils/elasticsearch').client.dn;
 
-const INDEX = 'shelf_goods';
+const INDEX = 'search_keyword';
+
+const join = (resp, weight)=> {
+    let results = {}
+        , res = [];
+    const full = resp.pinyin_full[0].options
+        , only = resp.pinyin_only[0].options;
+    if (full && full instanceof Array && full.length > 0) {
+        full.forEach(result=>results[result.text] = result._score);
+    }
+    if (only && only instanceof Array && only.length > 0) {
+        only.forEach(result=>results[result.text] = result._score);
+    }
+    if (results !== {}) {
+        Object.keys(results).forEach(key=>res.push({keyword: key, weight: results[key]}));
+        res.sort((o1, o2)=>o2.weight - o1.weight);
+        if (!weight) { // 是否显示权重
+            let tmp = [];
+            res.forEach(r=>tmp.push(r.keyword));
+            res = tmp;
+        }
+        if (res.length > 10) {
+            return res.slice(0, 10);
+        } else {
+            return res;
+        }
+    } else {
+        return res;
+    }
+};
 
 // 搜索 - 建议
 const _ = {
     // 建议 - 关键词
     keyword: data=>new Promise((resolve, reject)=> {
-        resolve(true);
+        let body = {
+            pinyin_full: {
+                prefix: data.key
+                , completion: {
+                    field: 'keyword_pinyin_full'
+                    , size: 10
+                }
+            }, pinyin_only: {
+                prefix: data.key
+                , completion: {
+                    field: 'keyword_pinyin_only'
+                    , size: 10
+                }
+            }
+        };
+        client.suggest({
+            index: INDEX
+            , body: body
+        }, (error, resp)=> {
+            if (error) {
+                reject(GLO.eLog(error, '获取建议词出错'));
+            } else {
+                resolve(join(resp, data.weight));
+            }
+        });
     })
 
     // 建议 - 商品
@@ -63,7 +116,7 @@ const _ = {
 
 // 搜索 - 建议
 module.exports = data=>new Promise((resolve, reject)=> {
-    _.goods(data)
+    _.keyword(data)
         .then(r=>resolve(r))
         .catch(r=>reject(r));
 });

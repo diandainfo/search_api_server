@@ -59,7 +59,7 @@ module.exports = data=>new Promise((resolve, reject)=> {
             let results = [];
             const count = resp.hits.total;
             // TODO 记录反馈日志
-            GLO.searchLog(`${data.city_id} ${data.store_id} ${data.key} ${count}`);  // 记录搜索日志
+            GLO.searchLog(`${data.city_id} ${data.store_id} ${data.key} ${count} ${data.py}`);  // 记录搜索日志
             if (count > 0) {
                 resp.hits.hits.forEach(hit=> {
                     const good = new Good(hit._id);

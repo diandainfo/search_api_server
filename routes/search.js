@@ -19,6 +19,7 @@ router.get('/', (req, res)=> {
         , all: 'all' in query                           // 是否显示全部数据字段
         , highlight: 'highlight' in query ? query.highlight : 'tag'       // 高亮的标签内容
         , store_id: 'sid' in query ? parseInt(query.sid) : -1
+        , py: 'py' in query ? query.py : ''
     };
     if ('key' in query && query.key) {
         _.key = query.key;

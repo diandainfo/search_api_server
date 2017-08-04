@@ -28,8 +28,8 @@ const _ = {
 
     // 获取本机IP，确认是否需要检查节点
     , needCheck: () => {
-        const chk = config.es.check
-            , cip = config.es.check_ip
+        const chk = config.check
+            , cip = config.check_ip
             , lip = methodUtils.getLocalIp()
             , boo = chk && cip === lip;
         GLO.log('本机IP:【' + lip + '】' +

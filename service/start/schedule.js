@@ -43,9 +43,9 @@ const _ = {
         GLO.log(' √ 定时任务:昨日数据检查 - 创建成功 --', 'start');
     }
 
-    // 每日6-23点 每小时存一次同步时间戳
+    // 每日6-23点 每20分钟存一次同步时间戳
     , saveTimestamp: ()=> {
-        schedule.scheduleJob('55 29 6-23 * * *', ()=> {
+        schedule.scheduleJob('55 */20 6-23 * * *', ()=> {
             syncService.redis.save(GLO.sync_timestamp);
         });
         GLO.log(' √ 定时任务:Redis存储时间戳 - 创建成功 --', 'start');
@@ -55,9 +55,9 @@ const _ = {
 module.exports = init=> {
     if (init) {
         GLO.log('----- 开始创建定时任务 -----', 'start');
-        // _.syncEveryHeart();
-        // _.saveTimestamp();
-        // _.syncEveryDay();
+        _.syncEveryHeart();
+        _.saveTimestamp();
+        _.syncEveryDay();
     } else {
         GLO.log('----- 无需创建定时任务 -----', 'start');
     }

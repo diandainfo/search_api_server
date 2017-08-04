@@ -22,7 +22,13 @@ router.get('/', (req, res)=> {
         , py: 'py' in query ? query.py : ''
     };
     if ('key' in query && query.key) {
-        _.key = query.key;
+        // 进行非(中文、英文、数字)的过滤
+        const _key = query.key.replace(/[^a-zA-Z0-9\u4E00-\u9FA5]/g, '');
+        if (_key) {
+            _.key = _key;
+        } else {
+            return res.json(GLO.error('请输入中文、英文、数字进行查询:key', -10));
+        }
     } else {
         return res.json(GLO.error('未获取到建议词:key', -11));
     }

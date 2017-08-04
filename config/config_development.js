@@ -10,12 +10,13 @@ module.exports = {
     sys: {
         host: ''
         , port: 39210
-    }, es: {
+    }
+    , check: true                               // 是否需要进行检查
+    , check_ip: '192.168.1.92'                  // 需要进行检查的ip
+    , es: {
         shards: 1
         , replicas: 0
         , log: 'trace'
-        , check: true                               // 是否进行索引检查
-        , check_ip: '192.168.1.92'                  // 索引检查的ip
         , data_node: {                              // data-node
             host: '192.168.1.180'
             , auth: 'elastic:changeme'
@@ -26,11 +27,11 @@ module.exports = {
             , port: 9210
         }
     }, mysql: {
-        host: '127.0.0.1'
+        host: '192.168.1.101'
         , port: 3306
-        , user: 'root'
-        , password: 'root'
-        , database: 'shelf_goods'
+        , user: 'dddev'
+        , password: '123456'
+        , database: 'ctcdb_new_test'
         , timezone: '+08:00'
     }, redis: {
         host: '192.168.1.101'

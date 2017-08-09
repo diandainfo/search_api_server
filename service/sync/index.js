@@ -35,7 +35,7 @@ module.exports = {
                 // 标记当前时间
                 GLO.temp_timestamp = new Date().getTime();
                 self.mysql
-                    .getGoodsSQL(GLO.sync_timestamp - 1000 * 60 * 60 * 8) // sql需要转换时区
+                    .getGoodsSQL(GLO.sync_timestamp - 1000 * 60 * 60 * 8 - 1000 * 60) // sql需要转换时区+冗余1分钟（MySQL服务器可能与服务端服务器有时间差）
                     .then(sql=>self.mysql.getGoodsData(sql))
                     .then(results=> {
                         if (results && results instanceof Array && results.length > 0) {

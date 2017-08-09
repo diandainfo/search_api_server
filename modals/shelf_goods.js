@@ -59,7 +59,7 @@ class Shelf_Goods {
         this.sci = source.second_catalog_id;
         this.fcn = source.first_catalog_name;
         this.scn = source.second_catalog_name;
-        this.updateAt = source.update_at;
+        this.updatedAt = source.update_at;
         this.gid = source.good_id;
     }
 

@@ -14,12 +14,13 @@ const goodsService = require('../service').goods;
 router.get('/', (req, res)=> {
     const query = req.query;
     let _ = {
-        from: 'offset' in query ? query.offset : 0
-        , size: 'limit' in query ? query.limit : 20
+        from: 'offset' in query ? parseInt(query.offset) || 0 : 0
+        , size: 'limit' in query ? parseInt(query.limit) || 20 : 20
         , all: 'all' in query                           // 是否显示全部数据字段
         , highlight: 'highlight' in query ? query.highlight : 'tag'       // 高亮的标签内容
-        , store_id: 'sid' in query ? parseInt(query.sid) : -1
+        , store_id: 'sid' in query ? parseInt(query.sid) || 0 : -1
         , py: 'py' in query ? query.py : ''
+        , state: 'state' in query ? parseInt(query.state) || -1 : -1
     };
     if ('key' in query && query.key) {
         // 进行非(中文、英文、数字)的过滤

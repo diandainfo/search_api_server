@@ -81,6 +81,8 @@ const mapping = {
 
             // ----- 实时数据
             , stock: {type: "integer"}                      // 库存数量
+            // ----- 统计数据
+            , statistics_weight: {type: "integer"}          // 统计权重:浏览次数
 
             // ----- 标签过滤
             , first_catalog_id: {type: "integer"}           // 一级分类编号

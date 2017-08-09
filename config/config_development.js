@@ -11,10 +11,10 @@ module.exports = {
         host: ''
         , port: 39210
     }
-    , check: true                               // 是否需要进行检查
+    , check: false                               // 是否需要进行检查
     , check_ip: '192.168.1.92'                  // 需要进行检查的ip
     , es: {
-        shards: 1
+        shards: 2
         , replicas: 0
         , log: 'trace'
         , data_node: {                              // data-node

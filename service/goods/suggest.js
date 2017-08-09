@@ -48,13 +48,13 @@ const _ = {
                 prefix: data.key
                 , completion: {
                     field: 'keyword_pinyin_full'
-                    , size: 10
+                    , size: data.size
                 }
             }, pinyin_only: {
                 prefix: data.key
                 , completion: {
                     field: 'keyword_pinyin_only'
-                    , size: 10
+                    , size: data.size
                 }
             }
         };
@@ -70,7 +70,7 @@ const _ = {
         });
     })
 
-    // 建议 - 商品
+    // fixme 建议 - 商品：因context suggester 速度太低，不再使用商品进行pinyin建议
     , goods: data=>new Promise((resolve, reject)=> {
         const suggest = field=> ({
             prefix: data.key

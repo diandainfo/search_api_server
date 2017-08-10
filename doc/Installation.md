@@ -161,7 +161,8 @@
             - .../search_api_server/trunk/logs/search.log  ## 搜索日志的存储目录
         output.logstash:
           hosts: ["localhost:5043"]     ## Logstash的请求地址
-        ``` 
+        ```
+      - 创建 `search-pipeline.conf` 配置见[./search-pipeline.conf](./search-pipeline.conf)
       - 启动
         ```
         ./filebeat -e -c filebeat.yml -d "publish" &
